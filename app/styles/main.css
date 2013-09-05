@@ -1,29 +1,24 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
 body {
     background: #fafafa;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
 
-.hero-unit {
-    margin: 50px auto 0 auto;
-    width: 300px;
-    font-size: 18px;
-    font-weight: 200;
-    line-height: 30px;
-    background-color: #eee;
-    border-radius: 6px;
-    padding: 60px;
+.snap-content {
+    background: #fafafa;
+    padding: 10px 20px;
 }
 
-.hero-unit h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+.snap-drawers {
+    background: #323949;
 }
 
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+.snap-drawer {
+    background: #323949;
+    color: #eee;
+    padding: 10px;
 }

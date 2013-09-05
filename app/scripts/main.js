@@ -34,6 +34,10 @@ function display_content(posts) {
 	});
 }
 
+var snapper = new Snap({
+	element: document.getElementById('content')
+});
+
 $(function () {
 
 	// display locally stored content
