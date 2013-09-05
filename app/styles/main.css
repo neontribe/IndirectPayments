@@ -8,6 +8,10 @@ body {
     color: #333;
 }
 
+a {
+    color: #e9b59c;
+}
+
 .snap-content {
     background: #fafafa;
     padding: 10px 20px;
@@ -21,4 +25,15 @@ body {
     background: #323949;
     color: #eee;
     padding: 10px;
+}
+
+.scrollable {
+    overflow: auto;
+    -webkit-transition-property: top, bottom;
+    transition-property: top, bottom;
+    -webkit-transition-duration: .2s, .2s;
+    transition-duration: .2s, .2s;
+    -webkit-transition-timing-function: linear, linear;
+    transition-timing-function: linear, linear;
+    -webkit-overflow-scrolling: touch;
 }

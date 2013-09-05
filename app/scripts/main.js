@@ -23,35 +23,36 @@ function get_latest_content(successCallback) {
 }
 
 function display_content(posts) {
+	// reset contents
+	$("#content, #sideNav ul").html("");
+
+	// parse if necessary
 	if ( !$.isArray(posts) ) {
 		posts = JSON.parse(posts);
 	}
+
+	// content
 	$.each(posts, function (i, post) {
-		$("#content").html("").append(
-			"<h2>" + post.title + "</h2>\n" +
-			post.content
-		);
+		$("#content").append("<h2>" + post.title + "</h2>\n" + post.content);
+		$("#sideNav ul").append('<li><a href="#' + post.slug + '">' + post.title + '</a></li>');
 	});
 }
 
+// set up drawers
 var snapper = new Snap({
 	element: document.getElementById('content')
 });
 
-$(function () {
+// display locally stored content
+display_content(localStorage["posts"]);
 
-	// display locally stored content
-	display_content(localStorage["posts"]);
+// attempt to get latest content from remote
+get_latest_content(function (data) {
+	log(data);
 
-	// attempt to get latest content from remote
-	get_latest_content(function (data) {
-		log(data);
+	// display it
+	display_content(data.posts);
 
-		// display it
-		display_content(data.posts);
-
-		// store it
-		localStorage["posts"] = JSON.stringify(data.posts);
-		log(localStorage["posts"]);
-	});
+	// store it
+	localStorage["posts"] = JSON.stringify(data.posts);
 });
