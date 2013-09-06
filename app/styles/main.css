@@ -1,39 +1,69 @@
 *, *:before, *:after {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-    background: #fafafa;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #333;
+	background: #fafafa;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #333;
 }
 
 a {
-    color: #e9b59c;
+	color: #e9b59c;
 }
 
 .snap-content {
-    background: #fafafa;
-    padding: 10px 20px;
+	background: #fafafa;
+	padding: 70px 20px 10px 20px;
 }
 
 .snap-drawers {
-    background: #323949;
+	background: #323949;
 }
 
 .snap-drawer {
-    background: #323949;
-    color: #eee;
-    padding: 10px;
+	background: #323949;
+	color: #eee;
+	padding: 70px 10px 10px 10px;
 }
 
-.scrollable {
-    overflow: auto;
-    -webkit-transition-property: top, bottom;
-    transition-property: top, bottom;
-    -webkit-transition-duration: .2s, .2s;
-    transition-duration: .2s, .2s;
-    -webkit-transition-timing-function: linear, linear;
-    transition-timing-function: linear, linear;
-    -webkit-overflow-scrolling: touch;
+nav[role="navigation"] {
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 60px;
+	background: #000;
+	padding: 10px;
 }
+
+nav[role="navigation"] button {
+	border: none;
+	cursor: pointer;
+	background: transparent;
+	width: 40px;
+	height: 40px;
+	margin: 0;
+	padding: 0;
+	color: transparent;
+	transition: all 0.5s linear;
+}
+
+button#back {
+	background: url(../images/nav_icon_back.png) no-repeat;
+	background-size: contain;
+}
+
+button#menu {
+	background: url(../images/nav_icon_menu.png) no-repeat;
+	background-size: contain;
+	position: absolute;
+	left: 50%;
+	margin-left: -20px;
+}
+
+button[disabled] {
+	opacity: 0.5;
+}
+

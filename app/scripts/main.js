@@ -1,11 +1,13 @@
 var apiBase = "http://mottokrosh.local/IndirectPayments/wordpress/api/",
 	options = {
-	apiEndpoints: {
-		posts: apiBase + "get_posts/",
-		pages: apiBase + "get_page_index/"
+		apiEndpoints: {
+			posts: apiBase + "get_posts/",
+			pages: apiBase + "get_page_index/"
+		},
+		debug: true
 	},
-	debug: true
-};
+	lastPosition = 0,
+	navigationHeight = 60;
 
 window.log = function () {
 	log.history = log.history || [];
@@ -80,46 +82,33 @@ var snapper = new Snap({
 });
 
 // smooth anchor scrolling
-/*$("body").on("click", "a[href*='#']:not([href='#'])", function (evt) {
-	if ( location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-		var $target = $(this.hash), target = this.hash;
-		log($target, target);
-
-		$target = $target.length ? $target : $('[name=' + this.hash.slice(1) +']');
-
-		if ($target.length) {
-			evt.preventDefault();
-			var offset = "-" + $target.offset().top + "px";
-			log(offset);
-			$("#contentWrapper").css({ "transition": "all 1s ease" });
-			$("#contentWrapper").css({ "margin-top": offset });
-			$("#contentWrapper").on("webkitTransitionEnd transitionend msTransitionEnd oTransitionEnd", function () {
-				//debugger;
-				$("#contentWrapper").css("transition", "none");
-				$("#contentWrapper").css({ "margin-top": "0" });
-				$("#content").scrollTop($target.offset().top);
-			});
-		}
-	}
-});*/
-
-// smooth anchor scrolling
-$("body").on("click", "a[href*='#']:not([href='#'])", function (e) {
+$("body").on("click", "a[href*='#']:not([href='#'])", function (evt) {
 	if ( location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
 		var $target = $(this.hash),
 			target = this.hash;
 		$target = $target.length ? $target : $('[name=' + this.hash.slice(1) +']');
 		if ( $target.length ) {
-			e.preventDefault();
-			var offset = $target.offset().top + $("#content").scrollTop(),
+			evt.preventDefault();
+			var offset = $target.offset().top + $("#content").scrollTop() - navigationHeight,
 				velocity = 600.0,  // pixels per second
-				duration = Math.abs( parseFloat($target.offset().top) / velocity );
-			log(this.hash, offset, duration);
+				duration = Math.abs( parseFloat($target.offset().top - navigationHeight) / velocity );
+			lastPosition = $("#content").scrollTop();
+			$("#back").attr("disabled", false);
+			log(this.hash, offset, duration, lastPosition);
 			$("#content").animate({ scrollTop: offset }, duration * 1000, function () {
-				location.hash = target;
+				//location.hash = target;
 			});
 		}
 	}
+});
+
+$("body").on("click", "#back", function (evt) {
+	evt.preventDefault();
+	$("#content").animate({
+		scrollTop: lastPosition
+	}, 1000, function () {
+		$("#back").attr("disabled", true);
+	});
 });
 
 // display locally stored content
