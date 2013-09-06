@@ -103,14 +103,23 @@ var snapper = new Snap({
 	}
 });*/
 
-$("body").on("click", "a", function (e) {
-	e.preventDefault();
-	var offset = $(this.hash).offset().top + $("#content").scrollTop(),
-		velocity = 600.0,  // pixels/sec
-		duration = Math.abs(parseFloat($(this.hash).offset().top)/velocity);
-	log(this.hash, offset, duration);
-	//$("#content").scrollTop(offset);
-	$("#content").animate({ scrollTop: offset }, duration*1000);
+// smooth anchor scrolling
+$("body").on("click", "a[href*='#']:not([href='#'])", function (e) {
+	if ( location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+		var $target = $(this.hash),
+			target = this.hash;
+		$target = $target.length ? $target : $('[name=' + this.hash.slice(1) +']');
+		if ( $target.length ) {
+			e.preventDefault();
+			var offset = $target.offset().top + $("#content").scrollTop(),
+				velocity = 600.0,  // pixels per second
+				duration = Math.abs( parseFloat($target.offset().top) / velocity );
+			log(this.hash, offset, duration);
+			$("#content").animate({ scrollTop: offset }, duration * 1000, function () {
+				location.hash = target;
+			});
+		}
+	}
 });
 
 // display locally stored content
