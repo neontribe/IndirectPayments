@@ -96,7 +96,12 @@ $("body").on("click", "a[href*='#']:not([href='#'])", function (evt) {
 			$("#back").attr("disabled", false);
 			log(this.hash, offset, duration, lastPosition);
 			$("#content").animate({ scrollTop: offset }, duration * 1000, function () {
-				//location.hash = target;
+				if(history.pushState) {
+					history.pushState(null, null, target);
+				}
+				else {
+					location.hash = target;
+				}
 			});
 		}
 	}
