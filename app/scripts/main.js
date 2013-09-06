@@ -76,6 +76,14 @@ function display_pages(pages) {
 	});
 }
 
+function set_hash(target) {
+	if(history.pushState) {
+		history.pushState(null, null, target);
+	} else {
+		location.hash = target;
+	}
+}
+
 // set up drawers
 var snapper = new Snap({
 	element: document.getElementById('content')
@@ -96,12 +104,7 @@ $("body").on("click", "a[href*='#']:not([href='#'])", function (evt) {
 			$("#back").attr("disabled", false);
 			log(this.hash, offset, duration, lastPosition);
 			$("#content").animate({ scrollTop: offset }, duration * 1000, function () {
-				if(history.pushState) {
-					history.pushState(null, null, target);
-				}
-				else {
-					location.hash = target;
-				}
+				set_hash(target);
 			});
 		}
 	}
@@ -113,7 +116,18 @@ $("body").on("click", "#back", function (evt) {
 		scrollTop: lastPosition
 	}, 1000, function () {
 		$("#back").attr("disabled", true);
+		//set_hash(target);
 	});
+});
+
+$("body").on("click", "#menu", function (evt) {
+	evt.preventDefault();
+	var data = snapper.state();
+	if ( data.state === "closed" ) {
+		snapper.open("left");
+	} else {
+		snapper.close();
+	}
 });
 
 // display locally stored content
@@ -140,4 +154,10 @@ get_latest_content("posts", function (data) {
 		// store it
 		localStorage["pages"] = JSON.stringify(data.pages);
 	});
+
+	// if we opened the page with a hash fragment, make sure its target is
+	// not hidden under the main navigation
+	if ( location.hash ) {
+		$("#content").scrollTop($("#content").scrollTop() - navigationHeight);
+	}
 });
