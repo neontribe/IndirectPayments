@@ -4,10 +4,11 @@ var apiBase = "http://mottokrosh.local/IndirectPayments/wordpress/api/",
 			posts: apiBase + "get_posts/",
 			pages: apiBase + "get_page_index/"
 		},
+		historyLimit: 10,
 		debug: true
 	},
-	lastPosition = 0,
-	navigationHeight = 60;
+	lastPosition = [],
+	navigationHeight = 60 + 15;
 
 window.log = function () {
 	log.history = log.history || [];
@@ -84,6 +85,16 @@ function set_hash(target) {
 	}
 }
 
+function save_position() {
+	lastPosition.push({
+		value: $("#content").scrollTop(),
+		article: location.hash
+	});
+
+	// be sure the back button is enabled
+	$("#back").attr("disabled", false);
+}
+
 // set up drawers
 var snapper = new Snap({
 	element: document.getElementById('content')
@@ -95,13 +106,17 @@ $("body").on("click", "a[href*='#']:not([href='#'])", function (evt) {
 		var $target = $(this.hash),
 			target = this.hash;
 		$target = $target.length ? $target : $('[name=' + this.hash.slice(1) +']');
+
 		if ( $target.length ) {
 			evt.preventDefault();
 			var offset = $target.offset().top + $("#content").scrollTop() - navigationHeight,
 				velocity = 600.0,  // pixels per second
 				duration = Math.abs( parseFloat($target.offset().top - navigationHeight) / velocity );
-			lastPosition = $("#content").scrollTop();
-			$("#back").attr("disabled", false);
+
+			// save current position before moving on
+			save_position();
+
+			// scroll
 			log(this.hash, offset, duration, lastPosition);
 			$("#content").animate({ scrollTop: offset }, duration * 1000, function () {
 				set_hash(target);
@@ -110,16 +125,22 @@ $("body").on("click", "a[href*='#']:not([href='#'])", function (evt) {
 	}
 });
 
+// app's back button
 $("body").on("click", "#back", function (evt) {
 	evt.preventDefault();
+	var last = lastPosition.pop();
+
 	$("#content").animate({
-		scrollTop: lastPosition
+		scrollTop: last.value
 	}, 1000, function () {
-		$("#back").attr("disabled", true);
-		//set_hash(target);
+		if ( lastPosition.length === 0) {
+			$("#back").attr("disabled", true);
+		}
+		set_hash(last.article);
 	});
 });
 
+// menu button
 $("body").on("click", "#menu", function (evt) {
 	evt.preventDefault();
 	var data = snapper.state();

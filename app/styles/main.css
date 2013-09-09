@@ -18,13 +18,41 @@ a {
 }
 
 .snap-drawers {
-	background: #323949;
+	background: #31343C;
 }
 
 .snap-drawer {
-	background: #323949;
+	background: #31343C;
 	color: #eee;
-	padding: 70px 10px 10px 10px;
+	padding: 60px 0 0 0;
+}
+
+#sideNav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#sideNav li {
+	padding: 0;
+	border-bottom: 1px solid #4F5461;
+}
+
+#sideNav a {
+	text-decoration: none;
+	display: block;
+	padding: 15px;
+	transition: all 0.4s linear;
+	background: #31343C;
+	background: -webkit-linear-gradient(top, #31343C, #3b3f47);
+	background: -moz-linear-gradient(top, #31343C, #3b3f47);
+	background: -o-linear-gradient(top, #31343C, #3b3f47);
+	background: linear-gradient(to bottom, #31343C, #3b3f47);
+}
+
+#sideNav a:hover {
+	color: #F7D5C5;
+	background: #42464e;
 }
 
 nav[role="navigation"] {
@@ -34,8 +62,13 @@ nav[role="navigation"] {
 	left: 0;
 	right: 0;
 	height: 60px;
-	background: #000;
 	padding: 10px;
+	background: #000;
+	background: -webkit-linear-gradient(top, #444, #000);
+	background: -moz-linear-gradient(top, #444, #000);
+	background: -o-linear-gradient(top, #444, #000);
+	background: linear-gradient(to bottom, #444, #000);
+	box-shadow: 0 0 10px #333;
 }
 
 nav[role="navigation"] button {
