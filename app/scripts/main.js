@@ -5,11 +5,22 @@ var apiBase = "http://mottokrosh.local/IndirectPayments/wordpress/api/",
 			pages: apiBase + "get_page_index/"
 		},
 		historyLimit: 10,
+		viewportThreshold: 60,
 		debug: true
 	},
 	lastPosition = [],
-	navigationHeight = 60 + 15;
+	navigationHeight = 60 + 15,
+	cache = {
+		contentViewport: $("#content").outerHeight(true),
+		articlesInViewport: [],
+		active: null
+	};
 
+//
+// --- Functions ---
+//
+
+// IE safe console log, toggleable through options.debug
 window.log = function () {
 	log.history = log.history || [];
 	log.history.push(arguments);
@@ -56,6 +67,8 @@ function display_posts(posts) {
 		$("#container").append(nano('<article><h2 id="{slug}">{title}</h2>{content}</article>', post));
 		$("#sideNav ul").append(nano('<li><a href="#{slug}">{title}</a></li>', post));
 	});
+
+	cache.articles = $("#container h2");
 }
 
 function display_pages(pages) {
@@ -78,7 +91,11 @@ function display_pages(pages) {
 }
 
 function set_hash(target) {
-	if(history.pushState) {
+	if ( !target.match(/^#/) ) {
+		target = "#" + target;
+	}
+
+	if (history.pushState) {
 		history.pushState(null, null, target);
 	} else {
 		location.hash = target;
@@ -95,10 +112,28 @@ function save_position() {
 	$("#back").attr("disabled", false);
 }
 
-// set up drawers
-var snapper = new Snap({
-	element: document.getElementById('content')
+function scroll_handler() {
+	var inView = $("#container h2:in-viewport"),
+		id = $(inView[0]).attr("id");
+		$first = $("#sideNav a[href='#" + id + "']");
+
+	if ( $first.length ) {
+		$("#sideNav a").removeClass("active");
+		$first.addClass("active");
+		set_hash(id);
+	}
+}
+
+$.extend($.expr[":"], {
+	"in-viewport": function (element) {
+		var offset = $(element).offset().top;
+		return ( offset > options.viewportThreshold && offset < cache.contentViewport - options.viewportThreshold );
+	}
 });
+
+//
+// --- Listeners ---
+//
 
 // smooth anchor scrolling
 $("body").on("click", "a[href*='#']:not([href='#'])", function (evt) {
@@ -149,6 +184,23 @@ $("body").on("click", "#menu", function (evt) {
 	} else {
 		snapper.close();
 	}
+});
+
+// listen to browser window resizes
+$(window).resize(function () {
+	cache.contentViewport = $("#content").outerHeight(true);
+});
+
+// listen to scrolling
+$("#content").on("scroll", $.throttle( 250, scroll_handler ));
+
+//
+// --- Init ---
+//
+
+// set up drawers
+var snapper = new Snap({
+	element: document.getElementById('content')
 });
 
 // display locally stored content
