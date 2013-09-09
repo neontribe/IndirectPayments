@@ -66,6 +66,9 @@ function display_posts(posts) {
 	$.each(posts, function (i, post) {
 		$("#container").append(nano('<article><h2 id="{slug}">{title}</h2>{content}</article>', post));
 		$("#sideNav ul").append(nano('<li><a href="#{slug}">{title}</a></li>', post));
+
+		// special case for the glossary
+
 	});
 
 	cache.articles = $("#container h2");
@@ -95,7 +98,7 @@ function set_hash(target) {
 		target = "#" + target;
 	}
 
-	if (history.pushState) {
+	if ( history.pushState ) {
 		history.pushState(null, null, target);
 	} else {
 		location.hash = target;
@@ -192,7 +195,7 @@ $(window).resize(function () {
 });
 
 // listen to scrolling
-$("#content").on("scroll", $.throttle( 250, scroll_handler ));
+$("#content").on("scroll", _.throttle( scroll_handler, 100 ));
 
 //
 // --- Init ---

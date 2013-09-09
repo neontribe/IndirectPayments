@@ -5,7 +5,7 @@
     "modernizr": "~2.6.2",
     "jquery": "~1.10.2",
     "snapjs": "*",
-    "jquery-throttle-debounce": "*"
+    "underscore": "~1.5.2"
   },
   "devDependencies": {}
 }
