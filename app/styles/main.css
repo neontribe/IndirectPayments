@@ -12,6 +12,10 @@ a {
 	color: #e9b59c;
 }
 
+abbr {
+	border-bottom: 1px dashed;
+}
+
 .snap-content {
 	background: #fafafa;
 	padding: 70px 20px 10px 20px;

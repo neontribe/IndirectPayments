@@ -49,6 +49,19 @@ function get_latest_content(type, successCallback) {
 	});
 }
 
+function glossary(slug) {
+	var terms = $("#" + slug).parents("article").find("h3");
+	terms.each(function (i, term) {
+		$("#container p").html(function (index, html) {
+			var regex = new RegExp($(term).text().toLowerCase(), "gi");
+			return html.replace(regex, function (match) {
+				log(match);
+				return '<abbr title="' + match + '">' + match + '</abbr>';
+			});
+		});
+	});
+}
+
 function display_posts(posts) {
 	if ( !posts ) {
 		return;
@@ -68,7 +81,9 @@ function display_posts(posts) {
 		$("#sideNav ul").append(nano('<li><a href="#{slug}">{title}</a></li>', post));
 
 		// special case for the glossary
-
+		if ( _.findWhere(post.tags, { slug: "glossary" }) ) {
+			glossary(post.slug);
+		}
 	});
 
 	cache.articles = $("#container h2");
