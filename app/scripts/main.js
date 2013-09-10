@@ -17,6 +17,17 @@ var apiBase = "http://mottokrosh.local/IndirectPayments/wordpress/api/",
 	};
 
 //
+// --- Expressions ---
+//
+
+$.extend($.expr[":"], {
+	"in-viewport": function (element) {
+		var offset = $(element).offset().top;
+		return ( offset > options.viewportThreshold && offset < cache.contentViewport - options.viewportThreshold );
+	}
+});
+
+//
 // --- Functions ---
 //
 
@@ -50,15 +61,18 @@ function get_latest_content(type, successCallback) {
 }
 
 function glossary(slug) {
-	var terms = $("#" + slug).parents("article").find("h3");
-	terms.each(function (i, term) {
-		$("#container p").html(function (index, html) {
-			var regex = new RegExp($(term).text().toLowerCase(), "gi");
-			return html.replace(regex, function (match) {
-				log(match);
-				return '<abbr title="' + match + '">' + match + '</abbr>';
-			});
-		});
+	var terms = $("#" + slug).parents("article").find("h3"),
+		map = {};
+
+	// order terms by longest first to get 'Mental Capacity Act Code of Practice'
+	// replace before 'Mental Capacity'
+	terms = _.sortBy(terms, function(el){ return $(el).text().length; }).reverse();
+
+	$.each(terms, function (i, term) {
+		var title = $(term).text(),
+			definition = $(term).nextUntil("h3").text(),
+			regex = new RegExp("(" + title + ")", "gi");
+		$("#container article:not(.glossary) p").replaceText(regex, '<abbr title="' + definition + '">$1</abbr>');
 	});
 }
 
@@ -77,7 +91,8 @@ function display_posts(posts) {
 
 	// content
 	$.each(posts, function (i, post) {
-		$("#container").append(nano('<article><h2 id="{slug}">{title}</h2>{content}</article>', post));
+		post.classes = _.pluck(post.tags, "slug").join(" ");
+		$("#container").append(nano('<article class="{classes}"><h2 id="{slug}">{title}</h2>{content}</article>', post));
 		$("#sideNav ul").append(nano('<li><a href="#{slug}">{title}</a></li>', post));
 
 		// special case for the glossary
@@ -114,9 +129,8 @@ function set_hash(target) {
 	}
 
 	if ( history.pushState ) {
+		// modern browsers only
 		history.pushState(null, null, target);
-	} else {
-		location.hash = target;
 	}
 }
 
@@ -141,13 +155,6 @@ function scroll_handler() {
 		set_hash(id);
 	}
 }
-
-$.extend($.expr[":"], {
-	"in-viewport": function (element) {
-		var offset = $(element).offset().top;
-		return ( offset > options.viewportThreshold && offset < cache.contentViewport - options.viewportThreshold );
-	}
-});
 
 //
 // --- Listeners ---
