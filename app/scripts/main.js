@@ -6,6 +6,7 @@ var apiBase = "http://mottokrosh.local/IndirectPayments/wordpress/api/",
 		},
 		historyLimit: 10,
 		viewportThreshold: 60,
+		drawersThreshold: 800,
 		debug: true
 	},
 	lastPosition = [],
@@ -156,6 +157,16 @@ function scroll_handler() {
 	}
 }
 
+function init_drawers() {
+	if ( $(window).width() <= options.drawersThreshold ) {
+		log("Enabling Snap");
+		snapper.enable();
+	} else {
+		log("Disabling Snap");
+		snapper.disable();
+	}
+}
+
 //
 // --- Listeners ---
 //
@@ -214,6 +225,7 @@ $("body").on("click", "#menu", function (evt) {
 // listen to browser window resizes
 $(window).resize(function () {
 	cache.contentViewport = $("#content").outerHeight(true);
+	init_drawers();
 });
 
 // listen to scrolling
@@ -227,6 +239,7 @@ $("#content").on("scroll", _.throttle( scroll_handler, 100 ));
 var snapper = new Snap({
 	element: document.getElementById('content')
 });
+init_drawers();
 
 // display locally stored content
 display_posts(localStorage["posts"]);

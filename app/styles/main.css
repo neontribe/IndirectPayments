@@ -154,3 +154,14 @@ button[disabled] {
 	opacity: 0.5;
 }
 
+#content {
+	left: 265px;
+	right: 265px;
+}
+
+@media all and (max-width: 800px) {
+	#content {
+		left: 0;
+		right: 0;
+	}
+}
