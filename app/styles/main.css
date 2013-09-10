@@ -25,7 +25,9 @@ a {
 }
 
 abbr {
-	border-bottom: 1px dashed;
+	/*background: #ffe5a5;*/
+	color: #a26d42;
+	cursor: help;
 }
 
 .snap-content {
@@ -164,4 +166,26 @@ button[disabled] {
 		left: 0;
 		right: 0;
 	}
+}
+
+#definitions article {
+	background: #ffe5a5;
+	color: #333;
+	margin: 15px;
+	padding: 0 0 1px 0;
+	border-bottom: 1px solid #000;
+}
+
+#definitions h1 {
+	background: #ffd275;
+	padding: 5px 10px;
+	margin: 0;
+	font-size: 16px;
+	text-transform: capitalize;
+	transition: all 0.3 linear;
+}
+
+#definitions p {
+	margin: 10px;
+	font-size: 14px;
 }
