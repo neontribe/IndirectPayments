@@ -10,7 +10,6 @@ var apiBase = "http://indirectpayments.neontribe.co.uk/api/",
 		debug: true
 	},
 	lastPosition = [],
-	navigationHeight = 60 + 15,
 	cache = {
 		contentViewport: $("#content").outerHeight(true),
 		active: null
@@ -193,9 +192,9 @@ $("body").on("click", "a[href*='#']:not([href='#'])", function (evt) {
 
 		if ( $target.length ) {
 			evt.preventDefault();
-			var offset = $target.offset().top + $("#content").scrollTop() - navigationHeight,
+			var offset = $target.offset().top + $("#content").scrollTop(),
 				velocity = 600.0,  // pixels per second
-				duration = Math.abs( parseFloat($target.offset().top - navigationHeight) / velocity );
+				duration = Math.abs( parseFloat($target.offset().top) / velocity );
 
 			// save current position before moving on
 			save_position();
@@ -278,10 +277,4 @@ get_latest_content("posts", function (data) {
 		// store it
 		localStorage["pages"] = JSON.stringify(data.pages);
 	});
-
-	// if we opened the page with a hash fragment, make sure its target is
-	// not hidden under the main navigation
-	if ( location.hash ) {
-		$("#content").scrollTop($("#content").scrollTop() - navigationHeight);
-	}
 });
