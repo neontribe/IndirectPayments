@@ -1,4 +1,4 @@
-var apiBase = "http://mottokrosh.local/IndirectPayments/wordpress/api/",
+var apiBase = "http://" + location.hostname + "/IndirectPayments/wordpress/api/",
 	options = {
 		apiEndpoints: {
 			posts: apiBase + "get_posts/",
@@ -13,7 +13,6 @@ var apiBase = "http://mottokrosh.local/IndirectPayments/wordpress/api/",
 	navigationHeight = 60 + 15,
 	cache = {
 		contentViewport: $("#content").outerHeight(true),
-		articlesInViewport: [],
 		active: null
 	};
 
