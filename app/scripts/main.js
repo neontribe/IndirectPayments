@@ -157,7 +157,7 @@ function scroll_handler() {
 	}
 
 	// handle glossary terms
-	$def.html("");
+	/*$def.html("");
 	$("abbr:in-viewport").each(function (i, v) {
 		var card = {
 			title: $(v).text(),
@@ -166,7 +166,7 @@ function scroll_handler() {
 		cards.push(nano("<article><h1>{title}</h1><p>{definition}</p></article>", card));
 	});
 	cards = _.uniq(cards);
-	$def.html(cards.join(""));
+	$def.html(cards.join(""));*/
 }
 
 function init_drawers() {
