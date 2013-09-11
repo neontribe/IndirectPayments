@@ -234,6 +234,23 @@ $("body").on("click", "#menu", function (evt) {
 	}
 });
 
+// glossary terms
+$("#container").on("click", "abbr", function (evt) {
+	$("#definitions article").removeClass("fadeIn");
+	var cardData = {
+			title: $(this).text(),
+			definition: $(this).attr("title")
+		},
+		card = nano("<article><span class='close'>&times;</span><h1>{title}</h1><p>{definition}</p></article>", cardData);
+
+	$("#definitions").html(card).find("article").addClass("fadeIn");
+	$("#definitions article").one("click", function (evt) {
+		$(this).removeClass("fadeIn").on("webkitTransitionEnd oTransitionEnd transitionend msTransitionEnd", function () {
+			$(this).remove();
+		});
+	});
+});
+
 // listen to browser window resizes
 $(window).resize(function () {
 	cache.contentViewport = $("#content").outerHeight(true);

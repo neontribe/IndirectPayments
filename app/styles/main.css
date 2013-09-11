@@ -180,17 +180,32 @@ button[disabled] {
 	padding: 0 0 1px 0;
 	border-bottom: 1px solid #000;
 	transition: all 0.3s linear;
+	opacity: 0;
+	position: relative;
 }
 
 #definitions h1 {
 	background: #ffd275;
-	padding: 5px 10px;
+	padding: 5px 30px 5px 10px;
 	margin: 0;
 	font-size: 16px;
 	text-transform: capitalize;
 }
 
+#definitions .close {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	font-size: 22px;
+	line-height: 1.3;
+	cursor: pointer;
+}
+
 #definitions p {
 	margin: 10px;
 	font-size: 14px;
+}
+
+#definitions article.fadeIn {
+	opacity: 1;
 }
