@@ -1,4 +1,4 @@
-var apiBase = "http://" + location.hostname + "/IndirectPayments/wordpress/api/",
+var apiBase = "http://indirectpayments.neontribe.co.uk/api/",
 	options = {
 		apiEndpoints: {
 			posts: apiBase + "get_posts/",
