@@ -61,7 +61,7 @@ function get_latest_content(type, successCallback) {
 }
 
 function glossary(slug) {
-	var terms = $("#" + slug).parents("article").find("h3"),
+	var terms = $("#" + slug).parents("section").find("h3"),
 		map = {};
 
 	// order terms by longest first to get 'Mental Capacity Act Code of Practice'
@@ -72,7 +72,7 @@ function glossary(slug) {
 		var title = $(term).text(),
 			definition = $(term).nextUntil("h3").text(),
 			regex = new RegExp("(" + title + ")", "gi");
-		$("#container article:not(.glossary) p").replaceText(regex, '<abbr title="' + definition + '">$1</abbr>');
+		$("#container section:not(.glossary) p").replaceText(regex, '<abbr title="' + definition + '">$1</abbr>');
 	});
 }
 
@@ -92,7 +92,7 @@ function display_posts(posts) {
 	// content
 	$.each(posts, function (i, post) {
 		post.classes = _.pluck(post.tags, "slug").join(" ");
-		$("#container").append(nano('<article class="{classes}"><h2 id="{slug}">{title}</h2>{content}</article>', post));
+		$("#container").append(nano('<section class="{classes}"><h2 id="{slug}">{title}</h2>{content}</section>', post));
 		$("#sideNav ul").append(nano('<li><a href="#{slug}">{title}</a></li>', post));
 
 		// special case for the glossary
@@ -110,7 +110,7 @@ function display_pages(pages) {
 	}
 
 	// reset contents
-	$("#topNav ul").html("");
+	$("#auxNav ul").html("");
 
 	// parse if necessary
 	if ( !$.isArray(pages) ) {
@@ -119,7 +119,7 @@ function display_pages(pages) {
 
 	// content
 	$.each(pages, function (i, page) {
-		$("#topNav ul").append(nano('<li><a href="#{slug}">{title}</a></li>', page));
+		$("#auxNav ul").append(nano('<li><a href="#{slug}">{title}</a></li>', page));
 	});
 }
 
@@ -164,7 +164,7 @@ function scroll_handler() {
 			title: $(v).text(),
 			definition: $(v).attr("title")
 		};
-		cards.push(nano("<article><h1>{title}</h1><p>{definition}</p></article>", card));
+		cards.push(nano("<dt>{title}</dt><dd>{definition}</dd>", card));
 	});
 	cards = _.uniq(cards);
 	$def.html(cards.join(""));

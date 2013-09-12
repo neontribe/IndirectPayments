@@ -1,164 +1,742 @@
-*, *:before, *:after {
+/** Variables
+* -------------------------------------------------------------- 
+
+#3A525F = font color
+#fefefe = light font color
+#29749d = link color
+#9999ff = link color light
+#35647e = link color dark
+
+*/
+
+/**
+* Google fonts
+----------------------------------------------------------------------
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Gudea:400,400italic,700);
+@import url(http://fonts.googleapis.com/css?family=Varela+Round);
+/**
+* Reset
+----------------------------------------------------------------------
+*/
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure,  footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+
+nav ul { list-style: none }
+
+blockquote, q { quotes: none }
+
+table { 
+	border-collapse: collapse; 
+	border-spacing: 0;
+}
+
+input, select { vertical-align: middle }
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
-body {
-	background: #f7f5e7;
-	color: #333;
+/**
+* Basic
+----------------------------------------------------------------------
+*/
+
+html {
+	font-size: 125%;
 }
 
-html, body, button, input, select, textarea {
-	font-family: "Source Sans Pro", Helvetica, sans-serif;
+body { 
+	line-height: 1;
+	font-weight: 400;
+	font-family: 'Gudea', sans-serif;
+	color: #3A525F;
+	padding: 3em 1.33em;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: Bitter, Georgia, serif;
-	line-height: 1.3;
+/**
+* Generic links
+----------------------------------------------------------------------
+*/
+
+a, a:visited { 
+	color: #29749d;
+	text-decoration: none;
 }
 
-a {
-	color: #f79044;
+a:hover { 
+	color: #9999ff;
 }
 
-#content a {
-	color: #bc360a;
+a:focus { outline: thin dotted; }
+
+a:active { 
+	outline: none;
 }
 
-abbr {
-	/*background: #ffe5a5;*/
-	color: #a26d42;
-	cursor: help;
+p a { border-bottom: 1px solid }
+p a:hover { border-bottom: 2px solid }
+p a:active { border-bottom: 3px solid }
+
+/**
+* Flow
+----------------------------------------------------------------------
+*/
+
+body * + * {
+	margin-top: 1.33rem;
+}
+
+li, dt, dd {
+	margin-top: 0;
+}
+
+p + p {
+	margin-top: 0.75em;
+}
+
+blockquote, figure {
+	padding: 1.33rem;
+}
+
+blockquote p {
+	font-size: 1.25em;
+	font-style: italic;
+	margin-top: 1.33em;
+}
+
+caption { 
+	text-align: center;
+	padding: 0.75em;
+	padding-bottom: 0;
+}
+
+blockquote footer:before { 
+	content: '\2014';
+	padding: 0 9px 0 0;
+}
+
+blockquote p:before, q:before { content: '\201C' }
+
+blockquote p:after, q:after { content: '\201D' }
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+* Paragraphs and lists
+----------------------------------------------------------------------
+*/
+
+p, li, dt, dd {
+	line-height: 1.33;
+}
+
+p { 
+	text-align: justify;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+}
+
+p:only-child, p:only-of-type, header p {
+	text-align: left;
+	-moz-hyphens: none;
+	-webkit-hyphens: none;
+	hyphens: none;
+}
+
+p * { margin-top: 0 }
+
+[role="main"] > div > p:first-child:first-letter {
+    float: left;
+    font-size: 3.66em;
+    line-height: 1;
+    vertical-align: super;
+}
+
+/* for introductory paragraphs belonging to major sections */
+header p { font-size: 1.25em }
+
+li { list-style: disc inside }
+
+ol li { list-style-type: decimal }
+
+dl {
+	word-spacing: -4px;
+}
+
+dt, dd {
+	background: #fff;
+	padding: 0.75em;
+	margin: 0.75em;
+	box-shadow: 5px 5px 0 #444444;
+}
+
+dt {
+	font-weight: bold;
+	margin-bottom: 0;
+}
+
+dd + dt {
+	margin-top: 0.75em;
+}
+
+dd {
+	margin-top: 0;
+}
+
+/**
+* <nav> sections
+----------------------------------------------------------------------
+*/
+
+nav ul {
+	text-align: center;
+	background: #29749d;
+}
+
+nav li, .tabs-nav li {
+	letter-spacing: normal;
+	list-style: none;
+	vertical-align: middle;
+	line-height: 1;
+}
+
+nav a, nav a:hover, nav a:active, nav a:visited, .tabs-nav a {
+	outline: none;
+	padding: 0.75em 0.75em 0.75em 0;
+	display: block;
+	text-align: left;
+	font-size: 1rem;
+	color: #fff;
+	font-family: 'varela round', sans-serif;
+	margin: 0 0.75em;
+}
+
+nav a:hover, nav a:active, nav a:focus {
+	background: #35647e;
+}
+
+nav li + li a, nav li + li a:hover, nav li + li a:focus {
+	border-top: 2px solid #fff;
+}
+
+/**
+* Headings
+----------------------------------------------------------------------
+*/
+
+h1, h2, h3, h4 {
+    font-weight: 700;
+	line-height: 1;
+	font-family: 'varela round', sans-serif;
+}
+
+* + h1, * + h2, * + h3 { margin-top: 1em; }
+* + h4 { margin-top: 1.33rem }
+
+h4 { font-size: 1em }
+h3 { font-size: 1.33em }
+h2 { font-size: 2em }
+h1 { font-size: 2.75em }
+
+h1 {
+	text-transform: capitalize;
+}
+
+h2 {
+	text-transform: lowercase;
+}
+
+h2:first-letter {
+	text-transform: uppercase;
+}
+
+header > div {
+	border-bottom: 2px solid;
+	padding-bottom: 1.33rem;
+}
+
+header + * {
+	margin-top: 3rem;
+}
+
+header * {
+	margin-top: 0.25em;
+}
+
+/**
+* Phrasing
+----------------------------------------------------------------------
+*/
+
+p * { line-height: 1; }
+
+strong, abbr, b { font-weight:700 }
+em, cite, q { font-style: italic }
+abbr { letter-spacing: 0.125em }
+del { text-decoration: line-through }
+abbr[title], dfn[title] { cursor: help }
+
+abbr:after {
+	content: '(?)';
+	font-size: 0.5em;
+	vertical-align: top;
+	vertical-align: super;
+	line-height: 0;
+	font-family: serif;
+	letter-spacing: 0;
+}
+
+small {
+	font-size: 0.9em;
+	color: #444;
+}
+
+code, samp {
+	background: #fefefe;
+	padding: 0.25em;
+	font-family: 'Lucida Console', monospace;
+	font-size: 0.9em;
+	letter-spacing: 1px;
+	-moz-hyphens: none;
+	-webkit-hyphens: none;
+	hyphens: none;
+}
+
+sup, sub {
+	line-height: 0;
+	font-size: 0.8em;
+}
+
+sup {
+	vertical-align: super;
+	font-style: italic;
+}
+
+sub {
+	vertical-align: sub;
+	position: relative;
+	top: -0.125em;
+	font-size: 0.8em;
+}
+
+kbd {
+	font-family: 'Lucida Console', monospace;
+	border: 2px solid;
+	padding: 0 0.125em;
+	white-space: nowrap;
+}
+
+/**
+* Images
+----------------------------------------------------------------------
+*/
+
+img {
+	max-width: 100%; 
+	height: auto;
+	border: 0;
+}
+
+figure {
+	padding: 0.75em 0;
+	text-align: center;
+}
+
+figure img {
+	max-width: 75%;
+}
+
+figcaption {
+	font-style: italic;
+	margin-top: 0.75rem;
+}
+
+/**
+* Code blocks
+----------------------------------------------------------------------
+*/
+
+pre {
+	background: #3A525F;
+	color: #fefefe;
+	padding: 1.33rem;
+	font-family: 'Lucida Console', monospace;
+	white-space: pre-wrap;
+	line-height: 1.33;
+	font-size: 0.85em;
+}
+
+/**
+* Forms
+----------------------------------------------------------------------
+*/
+
+/*
+
+Uses the format
+
+<form>
+	<fieldset>
+		<legend></legend>
+		<div>
+			<label></label>
+			--form input / textarea etc--
+		</div>
+		<div>
+			... " ...
+		</div>
+	</fieldset>
+</form>
+
+*/
+
+fieldset {
+	padding: 1.33em;
+	border: 2px solid #3A525F;
+}
+
+legend {
+	font-size: 1.25rem;
+	font-style: italic;
+	padding: 0 0.5em;
+}
+
+legend + div {
+	margin-top: 0;
+}
+
+form div > * {
+	display: block;
+}
+
+label {
+	line-height: 1;
+	font-weight: 700;
+}
+
+input, textarea, select {
+	font-size: inherit;
+	font-family: inherit;
+	margin-top: 0.33em;
+	line-height: 1.33;
+	width: 100%;
+	padding: 0.25em;
+	border: 2px solid #3A525F;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+form p + p {
+	margin-top: 0.75em;
+	text-indent: 0;
+}
+
+input:focus, textarea:focus, select:focus {
+	outline: 2px solid #3A525F;
+}
+
+option {
+	margin-top: 0;
+}
+
+input[type="checkbox"], input[type="radio"] {
+	width: auto;
+	padding: 0;
+	border: 0;
+	margin-top: 0;
+}
+
+label input {
+	display: inline-block; 
+	margin-right: 0.5em;
+	vertical-align: baseline;
+}
+
+/**
+* Buttons
+----------------------------------------------------------------------
+*/
+
+button, [role="button"], [role="button"]:visited, [role="button"]:hover, 
+[type="submit"], [type="reset"] {
+	background: #29749d;
+	border: 0;
+	color: #fefefe;
+	display: inline-block;
+	font-size: 1.25em; 
+	padding: 0.25em 0.5em;
+	text-transform: uppercase;
+	font-weight: 700;
+	cursor: pointer;
+	letter-spacing: 2px;
+	width: auto;
+	font-family: inherit;
+}
+
+button:focus, [role="button"]:focus, 
+[type="submit"]:focus, [type="reset"]:focus {
+	outline: none; 
+	background: #9999ff;
+}
+
+button:active, [role="button"]:active, 
+[type="submit"]:active, [type="reset"]:active {
+	background: #35647e;
+	border: 0; 
+}
+
+ul[role="toolbar"] li {
+	list-style: none;
+	display: inline-block;
+	margin: 0;
+}
+
+ul[role="toolbar"] button, ul[role="toolbar"] a {
+	margin: 0.25em 0;
+}
+
+button[disabled], input[disabled] {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+  filter: alpha(opacity=60);
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+  cursor: default;
+}
+
+button[disabled]:hover, button[disabled]:focus, 
+input[disabled]:hover, input[disabled]:focus {
+	opacity: 0.5;
+}
+
+/**
+* Grid-like helper styles
+* For making quasi-columns / adjacent boxes. Example HTML to follow
+----------------------------------------------------------------------
+*/
+
+/* to remove inline-block white space separating children */
+div[class^="group"] { 
+	font-size: 0;
+	text-align: left;
+	display: block; 
+	width: auto !important;
+} 
+
+div[class^="group"] > * {
+	font-size: 1rem; /* override reset in above rule */
+	display: inline-block; /* floats are for losers */
+	vertical-align: top;
+	margin-top: 0;
+}
+
+/* adjacent boxes need gutters. We create this using margin on their direct children  */
+div[class^="group"] > * > * { 
+	margin: 0 0.75em 0 0;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	display: block;
+	width: auto !important;
+	overflow: hidden;
+}
+div[class^="group"] > * + * > * { margin: 0 0.75em 0 } 
+div[class^="group"] > *:last-child > * { margin-right: 0 }
+
+/* One from each of the following sets of three to be placed on the containing div element */ 
+
+/* Set 1: Horizontal alignment of boxes */
+div.group-left { text-align: left }
+div.group-center { text-align: center }
+div.group-right { text-align: right }
+
+/* Set 2: Vertical alignment of boxes */
+div.group-top > * { vertical-align: top }
+div.group-middle > * { vertical-align: middle }
+div.group-bottom > * { vertical-align: baseline }
+
+/** 
+* EXAMPLE
+* Inline styles are used to define width 
+*(saves on spawning classes like ".three-fifths" etc)
+* Boxes are centered on vertical axis 
+********************************************
+
+<div class="group-center group-middle">
+	<div style="width:50%">
+		<div><!-- box content --></div>
+	</div>
+	<div style="width:30%">
+		<div><!-- box content --></div>
+	</div>
+	<div style="width:20%">
+		<div><!-- box content --></div>
+	</div>
+</div>
+
+*/
+
+/**
+* Utilities
+----------------------------------------------------------------------
+*/
+
+.a11y-hide {
+	display: inline-block;
+	height: 0;
+	width: 0;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+/**
+* Collapsable definition items
+* Uses the 5k collapse plugin (http://webcloud.se/jQuery-Collapse/)
+----------------------------------------------------------------------
+*/
+
+.box dt, .box dd {
+	display: block;
+	text-align: left;
+	width: auto;
+	padding: 0;
+}
+
+.box dt  a {
+	padding: 12px 12px;
+	background: #29749d;
+	display: block;
+	color: #fefefe;
+	font-style: normal;
+}
+
+.box dt {
+	margin-bottom: 6px;
+}
+
+.box dt a:before {
+	content:'\25B6';
+	padding-right: 0.5em;
+}
+
+.box dt.open a:before {
+	content:'\25BC';
+}
+
+.box dt.open {
+	margin-bottom: 0;
+}
+
+.box dd {
+	padding: 12px 0;
+}
+
+.box dt  a:hover, .box a:active, .box a:focus {
+	background: #35647e;
+}
+
+/**
+* Accessible tabs
+----------------------------------------------------------------------
+*/
+
+.tabs > div .tabs-panel { 
+	display: none; 
+	background: #fefefe;
+	padding: 1.33em 1em;
+}
+
+.tabs-panel {
+	margin-top: 0;
+}
+
+.tabs > div .tabs-panel-selected { display: block; }
+
+.tabs-nav a {
+	margin-bottom: 0;
+}
+
+li.tabs-selected a {
+	background: #fefefe;
+	color: #3A525F;
+}
+
+.tabs-body {
+	margin-top: 0;
 }
 
 .snap-content {
-	background: #f7f5e7;
 	padding: 70px 20px 10px 20px;
 }
 
+body {
+	padding: 0;
+}
+
 .snap-drawers {
-	background: #31343C;
+	top: 65px;
+	margin-top: 0;
 }
 
 .snap-drawer {
-	background: #31343C;
-	color: #eee;
-	padding: 60px 0 0 0;
+	background: #b8d6e7;
+	margin-top: 0;
 }
 
-#sideNav ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-#sideNav li {
-	padding: 0;
-	border-bottom: 1px solid #4F5461;
-}
-
-#sideNav a {
-	text-decoration: none;
-	display: block;
-	padding: 15px;
-	text-transform: capitalize;
-	transition: all 0.4s linear;
-	background: #31343C;
-	background: -webkit-linear-gradient(top, #31343C, #3b3f47);
-	background: -moz-linear-gradient(top, #31343C, #3b3f47);
-	background: -o-linear-gradient(top, #31343C, #3b3f47);
-	background: linear-gradient(to bottom, #31343C, #3b3f47);
-}
-
-#sideNav a:hover {
-	color: #fdaa3e;
-	background: #42464e;
-}
-
-#sideNav a.active {
-	background: #000;
-	color: #ffe5a5;
-}
-
-#topNav ul {
-	list-style: none;
-	padding: 0;
-}
-
-#topNav li {
-	display: inline-block;
-	background: #000;
-	background: -webkit-linear-gradient(top, #444, #000);
-	background: -moz-linear-gradient(top, #444, #000);
-	background: -o-linear-gradient(top, #444, #000);
-	background: linear-gradient(to bottom, #444, #000);
-	margin-right: 20px;
-}
-
-#topNav li:last-of-type {
-	margin-right: 0;
-}
-
-#topNav a {
-	display: inline-block;
-	padding: 15px;
-	text-decoration: none;
-	color: #f79044;
-	transition: all 0.2s ease;
-}
-
-#topNav a:hover {
-	color: #fdaa3e;
-	background: #42464e;
-}
-
-nav[role="navigation"] {
+#controls {
 	position: absolute;
 	z-index: 10;
 	top: 0;
 	left: 0;
 	right: 0;
-	height: 60px;
 	padding: 10px;
-	background: #000;
-	background: -webkit-linear-gradient(top, #444, #000);
-	background: -moz-linear-gradient(top, #444, #000);
-	background: -o-linear-gradient(top, #444, #000);
-	background: linear-gradient(to bottom, #444, #000);
-	box-shadow: 0 0 5px #333;
-}
-
-nav[role="navigation"] button {
-	border: none;
-	cursor: pointer;
-	background: transparent;
-	width: 40px;
-	height: 40px;
-	margin: 0;
-	padding: 0;
-	color: transparent;
-	transition: all 0.5s linear;
-}
-
-button#back {
-	background: url(../images/nav_icon_back.png) no-repeat;
-	background-size: contain;
-}
-
-button#menu {
-	background: url(../images/nav_icon_menu.png) no-repeat;
-	background-size: contain;
-	position: absolute;
-	left: 50%;
-	margin-left: -20px;
+	background: #3A525F;
+	text-align: right;
 }
 
 button[disabled] {
-	opacity: 0.5;
+	visibility: hidden;
 }
 
 #content {
 	left: 265px;
 	right: 265px;
+	top: 65px;
+	margin: 0;
+	background: #fff;
+	padding: 1.5em;
+}
+
+#menu {
+	display: inline-block;
+	height: 0;
+	width: 0;
+	overflow: hidden;
 }
 
 @media all and (max-width: 800px) {
@@ -166,26 +744,11 @@ button[disabled] {
 		left: 0;
 		right: 0;
 	}
-}
-
-#definitions article {
-	background: #ffe5a5;
-	color: #333;
-	margin: 15px;
-	padding: 0 0 1px 0;
-	border-bottom: 1px solid #000;
-	transition: all 0.3s linear;
-}
-
-#definitions h1 {
-	background: #ffd275;
-	padding: 5px 10px;
-	margin: 0;
-	font-size: 16px;
-	text-transform: capitalize;
-}
-
-#definitions p {
-	margin: 10px;
-	font-size: 14px;
+	
+	#menu {
+		overflow: visible;
+		height: auto;
+		width: auto;
+	}
+	
 }
