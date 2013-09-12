@@ -10,7 +10,6 @@ var apiBase = "http://indirectpayments.neontribe.co.uk/api/",
 		debug: true
 	},
 	lastPosition = [],
-	navigationHeight = 60 + 15,
 	cache = {
 		contentViewport: $("#content").outerHeight(true),
 		active: null
@@ -158,7 +157,7 @@ function scroll_handler() {
 	}
 
 	// handle glossary terms
-	$def.html("");
+	/*$def.html("");
 	$("abbr:in-viewport").each(function (i, v) {
 		var card = {
 			title: $(v).text(),
@@ -167,7 +166,7 @@ function scroll_handler() {
 		cards.push(nano("<dt>{title}</dt><dd>{definition}</dd>", card));
 	});
 	cards = _.uniq(cards);
-	$def.html(cards.join(""));
+	$def.html(cards.join(""));*/
 }
 
 function init_drawers() {
@@ -193,9 +192,9 @@ $("body").on("click", "a[href*='#']:not([href='#'])", function (evt) {
 
 		if ( $target.length ) {
 			evt.preventDefault();
-			var offset = $target.offset().top + $("#content").scrollTop() - navigationHeight,
+			var offset = $target.offset().top + $("#content").scrollTop(),
 				velocity = 600.0,  // pixels per second
-				duration = Math.abs( parseFloat($target.offset().top - navigationHeight) / velocity );
+				duration = Math.abs( parseFloat($target.offset().top) / velocity );
 
 			// save current position before moving on
 			save_position();
@@ -233,6 +232,23 @@ $("body").on("click", "#menu", function (evt) {
 	} else {
 		snapper.close();
 	}
+});
+
+// glossary terms
+$("#container").on("click", "abbr", function (evt) {
+	$("#definitions article").removeClass("fadeIn");
+	var cardData = {
+			title: $(this).text(),
+			definition: $(this).attr("title")
+		},
+		card = nano("<article><span class='close'>&times;</span><h1>{title}</h1><p>{definition}</p></article>", cardData);
+
+	$("#definitions").html(card).find("article").addClass("fadeIn");
+	$("#definitions article").one("click", function (evt) {
+		$(this).removeClass("fadeIn").on("webkitTransitionEnd oTransitionEnd transitionend msTransitionEnd", function () {
+			$(this).remove();
+		});
+	});
 });
 
 // listen to browser window resizes
@@ -278,10 +294,4 @@ get_latest_content("posts", function (data) {
 		// store it
 		localStorage["pages"] = JSON.stringify(data.pages);
 	});
-
-	// if we opened the page with a hash fragment, make sure its target is
-	// not hidden under the main navigation
-	if ( location.hash ) {
-		$("#content").scrollTop($("#content").scrollTop() - navigationHeight);
-	}
 });
