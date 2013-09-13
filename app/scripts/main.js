@@ -151,8 +151,8 @@ function scroll_handler() {
 		cards = [];
 
 	if ( $first.length ) {
-		$("#sideNav a").removeClass("active");
-		$first.addClass("active");
+		$("#sideNav a").removeAttr("aria-selected");
+		$first.attr("aria-selected", "true");
 		set_hash(id);
 	}
 
@@ -225,10 +225,10 @@ $("body").on("click", "#back", function (evt) {
 
 // menu button
 $("body").on("click", "#menu", function (evt) {
-	evt.preventDefault();
 	var data = snapper.state();
 	if ( data.state === "closed" ) {
 		snapper.open("left");
+		$('sideNav').focus();
 	} else {
 		snapper.close();
 	}
@@ -236,17 +236,18 @@ $("body").on("click", "#menu", function (evt) {
 
 // glossary terms
 $("#container").on("click", "abbr", function (evt) {
-	$("#definitions article").removeClass("fadeIn");
+	$("#definitions dt, #definitions dd").removeClass("fadeIn");
 	var cardData = {
 			title: $(this).text(),
 			definition: $(this).attr("title")
 		},
-		card = nano("<article><span class='close'>&times;</span><h1>{title}</h1><p>{definition}</p></article>", cardData);
+		card = nano("<dt>{title} <span class='close'>&times;</span></dt><dd>{definition}</dd>", cardData);
 
-	$("#definitions").html(card).find("article").addClass("fadeIn");
-	$("#definitions article").one("click", function (evt) {
-		$(this).removeClass("fadeIn").on("webkitTransitionEnd oTransitionEnd transitionend msTransitionEnd", function () {
-			$(this).remove();
+	$("#definitions").html(card).find("dt, dd").addClass("fadeIn");
+	$("#definitions dt").one("click", function (evt) {
+		var def = $(this).next('dd');
+		$(this, def).removeClass("fadeIn").on("webkitTransitionEnd oTransitionEnd transitionend msTransitionEnd", function () {
+			$(this, def).remove();
 		});
 	});
 });

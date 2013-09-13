@@ -3,9 +3,9 @@
 
 #3A525F = font color
 #fefefe = light font color
-#29749d = link color
-#9999ff = link color light
-#35647e = link color dark
+#009fbb = link color
+#9cd5e2 = link color light
+#027a8f = link color dark
 
 */
 
@@ -16,6 +16,18 @@
 
 @import url(http://fonts.googleapis.com/css?family=Gudea:400,400italic,700);
 @import url(http://fonts.googleapis.com/css?family=Varela+Round);
+
+@font-face {
+    font-family: 'entypo';
+    src: url('entypo-webfont.eot');
+    src: url('entypo-webfont.eot?#iefix') format('embedded-opentype'),
+         url('entypo-webfont.woff') format('woff'),
+         url('entypo-webfont.ttf') format('truetype'),
+         url('entypo-webfont.svg#entyporegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /**
 * Reset
 ----------------------------------------------------------------------
@@ -66,6 +78,7 @@ body {
 	font-family: 'Gudea', sans-serif;
 	color: #3A525F;
 	padding: 3em 1.33em;
+	background: #3A525F;
 }
 
 /**
@@ -74,12 +87,12 @@ body {
 */
 
 a, a:visited { 
-	color: #29749d;
+	color: #009fbb;
 	text-decoration: none;
 }
 
 a:hover { 
-	color: #9999ff;
+	color: #027a8f;
 }
 
 a:focus { outline: thin dotted; }
@@ -184,15 +197,16 @@ dl {
 }
 
 dt, dd {
-	background: #fff;
+	background: #c8e0d2;
 	padding: 0.75em;
 	margin: 0.75em;
-	box-shadow: 5px 5px 0 #444444;
+	box-shadow: 5px 5px 0 #222;
 }
 
 dt {
 	font-weight: bold;
 	margin-bottom: 0;
+	padding-bottom: 0;
 }
 
 dd + dt {
@@ -208,19 +222,24 @@ dd {
 ----------------------------------------------------------------------
 */
 
-nav ul {
-	text-align: center;
-	background: #29749d;
+[role="navigation"] {
+	position: relative;
 }
 
-nav li, .tabs-nav li {
+[role="navigation"] ul {
+	background: #009fbb;
+	margin-top: 0;
+	padding-top: 0.75em;
+}
+
+[role="navigation"] li, .tabs-nav li {
 	letter-spacing: normal;
 	list-style: none;
 	vertical-align: middle;
 	line-height: 1;
 }
 
-nav a, nav a:hover, nav a:active, nav a:visited, .tabs-nav a {
+[role="navigation"] a, [role="navigation"] a:hover, [role="navigation"] a:active, [role="navigation"] a:visited, .tabs-nav a {
 	outline: none;
 	padding: 0.75em 0.75em 0.75em 0;
 	display: block;
@@ -231,12 +250,58 @@ nav a, nav a:hover, nav a:active, nav a:visited, .tabs-nav a {
 	margin: 0 0.75em;
 }
 
-nav a:hover, nav a:active, nav a:focus {
-	background: #35647e;
+[role="navigation"] a:hover, [role="navigation"] a:active, [role="navigation"] a:focus, [role="navigation"] a[aria-selected] {
+	color: #f2e85b;
 }
 
-nav li + li a, nav li + li a:hover, nav li + li a:focus {
+a[aria-selected]:after {
+	font-family: entypo;
+	content: '\0020\e4ae';
+	font-size: 1.5em;
+	line-height: 0;
+	position: relative; 
+	top: 2px;
+}
+
+[role="navigation"] li + li a, [role="navigation"] li + li a:hover, [role="navigation"] li + li a:focus {
 	border-top: 2px solid #fff;
+}
+
+[role="navigation"] h2 {
+	padding: 0.33em 0;
+	text-align: center;
+	text-transform: uppercase; 
+	color: #fff;
+	font-weight: bold; 
+	background: #027a8f;
+	position: relative;
+}
+
+[role="navigation"] h2:after {
+	content: '\25bc';
+	color: #027a8f; 
+    display: block;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+	font-size: 0.8em
+}
+
+#auxNav {
+	padding: 0 0.75em 1.5em;
+}
+
+#auxNav li {
+	list-style: none;
+	line-height: 1.125; 
+}
+
+#auxNav li + li {
+	padding-top: 0.75em;
+}
+
+#auxNav a:hover, #auxNav a:focus {
+	color: #027a8f;
 }
 
 /**
@@ -283,6 +348,10 @@ header * {
 	margin-top: 0.25em;
 }
 
+section + section {
+	margin-top: 3em;
+}
+
 /**
 * Phrasing
 ----------------------------------------------------------------------
@@ -292,18 +361,16 @@ p * { line-height: 1; }
 
 strong, abbr, b { font-weight:700 }
 em, cite, q { font-style: italic }
-abbr { letter-spacing: 0.125em }
 del { text-decoration: line-through }
 abbr[title], dfn[title] { cursor: help }
 
+abbr {
+	background: #c8e0d2;
+	padding: 0 0.5em;
+}
+
 abbr:after {
-	content: '(?)';
-	font-size: 0.5em;
-	vertical-align: top;
-	vertical-align: super;
-	line-height: 0;
-	font-family: serif;
-	letter-spacing: 0;
+	
 }
 
 small {
@@ -482,8 +549,8 @@ label input {
 */
 
 button, [role="button"], [role="button"]:visited, [role="button"]:hover, 
-[type="submit"], [type="reset"] {
-	background: #29749d;
+[type="submit"], [type="reset"], #menu {
+	background: #009fbb;
 	border: 0;
 	color: #fefefe;
 	display: inline-block;
@@ -500,12 +567,12 @@ button, [role="button"], [role="button"]:visited, [role="button"]:hover,
 button:focus, [role="button"]:focus, 
 [type="submit"]:focus, [type="reset"]:focus {
 	outline: none; 
-	background: #9999ff;
+	background: #9cd5e2;
 }
 
 button:active, [role="button"]:active, 
 [type="submit"]:active, [type="reset"]:active {
-	background: #35647e;
+	background: #027a8f;
 	border: 0; 
 }
 
@@ -629,7 +696,7 @@ div.group-bottom > * { vertical-align: baseline }
 
 .box dt  a {
 	padding: 12px 12px;
-	background: #29749d;
+	background: #009fbb;
 	display: block;
 	color: #fefefe;
 	font-style: normal;
@@ -657,7 +724,7 @@ div.group-bottom > * { vertical-align: baseline }
 }
 
 .box dt  a:hover, .box a:active, .box a:focus {
-	background: #35647e;
+	background: #027a8f;
 }
 
 /**
@@ -698,14 +765,18 @@ body {
 	padding: 0;
 }
 
-.snap-drawers {
-	top: 65px;
+.snap-drawers, #content {
+	top: 58px;
 	margin-top: 0;
 }
 
 .snap-drawer {
 	background: #b8d6e7;
 	margin-top: 0;
+}
+
+.snap-drawer-right {
+	background: #3A525F;
 }
 
 #controls {
@@ -719,17 +790,47 @@ body {
 	text-align: right;
 }
 
+#controls button, #menu {
+	background: transparent;
+	line-height: 38px;
+	padding: 0;
+}
+
+#controls button:hover, #menu:hover, #controls button:focus, #menu:focus {
+	color: #009fbb;
+}
+
+#menu:before {
+	content: '\2630\0020';
+}
+
+
+
 button[disabled] {
 	visibility: hidden;
+}
+
+#back {
+	margin-right: 265px;
+}
+
+#back:before {
+	content: '\21b0\0020';
 }
 
 #content {
 	left: 265px;
 	right: 265px;
-	top: 65px;
 	margin: 0;
 	background: #fff;
 	padding: 1.5em;
+	box-shadow: 10px 10px #222222;
+}
+
+#content section {
+	max-width: 950px; 
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #menu {
@@ -737,6 +838,9 @@ button[disabled] {
 	height: 0;
 	width: 0;
 	overflow: hidden;
+	float: left; 
+	margin: 0;
+	padding: 0;
 }
 
 @media all and (max-width: 800px) {
