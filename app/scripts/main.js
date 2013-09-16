@@ -79,6 +79,28 @@ function glossary(slug) {
 	});
 }
 
+function case_studies(slug) {
+	var titles = $("#" + slug).parents("section").find("h3");
+
+	$.each(titles, function (i, v) {
+		var title = $(v).text(),
+			number = i + 1,
+			text = all_html($(v).nextUntil("h3")),
+			regex = new RegExp('\\[case_study number="' + number + '"\\]', "gi"); log(regex);
+
+		$("#container section:not(.case-studies) p").replaceText(regex, '<details><summary>' + title + '</summary>' + text + '</details>');
+	});
+	$("details").unwrap();
+}
+
+function all_html(selector_obj) {
+	var output = [];
+	selector_obj.each(function () {
+		output.push($(this).clone().wrap('<p>').parent().html());
+	});
+	return output.join("");
+}
+
 function display_posts(posts) {
 	if ( !posts ) {
 		return;
@@ -102,6 +124,12 @@ function display_posts(posts) {
 		if ( _.findWhere(post.tags, { slug: "glossary" }) ) {
 			glossary(post.slug);
 		}
+
+		// case studies
+		if ( _.findWhere(post.tags, { slug: "case-studies" }) ) {
+			case_studies(post.slug);
+		}
+
 	});
 
 	cache.articles = $("#container h2");
@@ -309,4 +337,7 @@ get_latest_content("posts", function (data) {
 	if ( location.hash ) {
 		$("#content").scrollTop($("#content").scrollTop() - options.scrollTopPadding);
 	}
+
+	// polyfill details
+	$("details").details();
 });

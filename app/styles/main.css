@@ -875,3 +875,19 @@ button[disabled] {
 #definitions dt.fadeIn, #definitions dd.fadeIn {
 	opacity: 1;
 }
+
+details > *:not(summary) {
+	background: #c9ccce;
+	padding: 1em;
+	margin: 0;
+}
+
+summary {
+	font-weight: bold;
+}
+
+summary[role="button"], summary[role="button"]:hover {
+	text-transform: none;
+	letter-spacing: 0;
+	font-size: 1em;
+}
