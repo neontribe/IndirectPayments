@@ -6,6 +6,7 @@ var apiBase = "http://indirectpayments.neontribe.co.uk/api/",
 		},
 		historyLimit: 10,
 		viewportThreshold: 60,
+		scrollTopPadding: 20,
 		drawersThreshold: 800,
 		debug: true
 	},
@@ -184,7 +185,7 @@ function init_drawers() {
 //
 
 // smooth anchor scrolling
-$("body").on("click", "a[href*='#']:not([href='#'])", function (evt) {
+$("body").on("click", "a[href*='#']:not([href='#']):not(#menu)", function (evt) {
 	if ( location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
 		var $target = $(this.hash),
 			target = this.hash;
@@ -192,9 +193,9 @@ $("body").on("click", "a[href*='#']:not([href='#'])", function (evt) {
 
 		if ( $target.length ) {
 			evt.preventDefault();
-			var offset = $target.offset().top + $("#content").scrollTop(),
-				velocity = 600.0,  // pixels per second
-				duration = Math.abs( parseFloat($target.offset().top) / velocity );
+			var offset = $target.offset().top + $("#content").scrollTop() - ( options.viewportThreshold + options.scrollTopPadding ),
+				velocity = 1200.0,  // pixels per second
+				duration = Math.abs( parseFloat($target.offset().top - ( options.viewportThreshold + options.scrollTopPadding ) ) / velocity );
 
 			// save current position before moving on
 			save_position();
@@ -295,4 +296,10 @@ get_latest_content("posts", function (data) {
 		// store it
 		localStorage["pages"] = JSON.stringify(data.pages);
 	});
+
+	// if we opened the page with a hash fragment, make sure its target is
+	// not hidden under the main navigation
+	if ( location.hash ) {
+		$("#content").scrollTop($("#content").scrollTop() - options.scrollTopPadding);
+	}
 });
