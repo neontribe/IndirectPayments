@@ -86,7 +86,7 @@ function case_studies(slug) {
 		var title = $(v).text(),
 			number = i + 1,
 			text = all_html($(v).nextUntil("h3")),
-			regex = new RegExp('\\[case_study number="' + number + '"\\]', "gi"); log(regex);
+			regex = new RegExp('\\[case_study number="' + number + '"\\]', "gi");
 
 		$("#container section:not(.case-studies) p").replaceText(regex, '<details><summary>' + title + '</summary>' + text + '</details>');
 	});
@@ -129,7 +129,6 @@ function display_posts(posts) {
 		if ( _.findWhere(post.tags, { slug: "case-studies" }) ) {
 			case_studies(post.slug);
 		}
-
 	});
 
 	cache.articles = $("#container h2");

@@ -6,7 +6,8 @@
     "jquery": "~1.10.2",
     "snapjs": "*",
     "underscore": "~1.5.2",
-    "jquery-details": "~0.1.0"
+    "jquery-details": "~0.1.0",
+    "json3": "~3.2.5"
   },
   "devDependencies": {}
 }
