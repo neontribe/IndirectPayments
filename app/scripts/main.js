@@ -38,7 +38,7 @@ $.extend($.expr[":"], {
 window.log = function () {
 	log.history = log.history || [];
 	log.history.push(arguments);
-	if ( console && options.debug ) {
+	if ( console && options.debug && typeof console.log === "function" ) {
 		console.log.apply(console, arguments);
 	}
 };
