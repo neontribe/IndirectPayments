@@ -1,4 +1,5 @@
-var apiBase = "http://indirectpayments.neontribe.co.uk/api/",
+var webHostName = "indirectpayments.neontribe.co.uk",
+	apiBase = "http://" + webHostName + "/api/",
 	options = {
 		apiEndpoints: {
 			posts: apiBase + "get_posts/",
@@ -14,7 +15,9 @@ var apiBase = "http://indirectpayments.neontribe.co.uk/api/",
 	cache = {
 		contentViewport: $("#content").outerHeight(true),
 		active: null
-	};
+	},
+	webHosts = [webHostName, "mottokrosh.local"],
+	isApp = $.inArray(location.hostname, webHosts) === -1;
 
 //
 // --- Expressions ---
@@ -119,7 +122,11 @@ function display_pages(pages) {
 
 	// content
 	$.each(pages, function (i, page) {
-		$("#auxNav ul").append(nano('<li><a href="#{slug}">{title}</a></li>', page));
+		if ( isApp && page.custom_fields && page.custom_fields.exclude_in_app ) {
+			// skip this page
+		} else {
+			$("#auxNav ul").append(nano('<li><a href="#{slug}">{title}</a></li>', page));
+		}
 	});
 }
 
