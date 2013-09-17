@@ -74,8 +74,9 @@ function glossary(slug) {
 	$.each(terms, function (i, term) {
 		var title = $(term).text(),
 			definition = $(term).nextUntil("h3").text(),
-			regex = new RegExp("(" + title + ")", "gi");
-		$("#container section:not(.glossary) p").replaceText(regex, '<abbr title="' + definition + '">$1</abbr>');
+			regex = new RegExp("(" + title + ")", "gi"),
+			templ = '<span class="term" role="button" tabindex="0" aria-haspopup="true">$1</span><span class="a11y-hide a11y-none" aria-hidden="true"> ' + definition + '</span>';
+		$("#container section:not(.glossary) p, #container section:not(.glossary) strong").replaceText(regex, templ);
 	});
 }
 
@@ -190,18 +191,6 @@ function scroll_handler() {
 		$first.attr("aria-selected", "true");
 		set_hash(id);
 	}
-
-	// handle glossary terms
-	/*$def.html("");
-	$("abbr:in-viewport").each(function (i, v) {
-		var card = {
-			title: $(v).text(),
-			definition: $(v).attr("title")
-		};
-		cards.push(nano("<dt>{title}</dt><dd>{definition}</dd>", card));
-	});
-	cards = _.uniq(cards);
-	$def.html(cards.join(""));*/
 }
 
 function init_drawers() {
@@ -270,23 +259,33 @@ $("body").on("click", "#menu", function (evt) {
 });
 
 // glossary terms
-$("#container").on("click", "abbr", function (evt) {
+$("#container").on("click", ".term", function (evt) {
 	$("#definitions dt, #definitions dd").removeClass("fadeIn");
-	var cardData = {
-			title: $(this).text(),
-			definition: $(this).attr("title")
+	var $term = $(this),
+		$def = $term.next("span"),
+		cardData = {
+			title: $term.text(),
+			definition: $def.text()
 		},
 		card = nano("<dt>{title} <span class='close'>&times;</span></dt><dd>{definition}</dd>", cardData);
 
+	// accessibility
+	$def.attr({ "aria-hidden": false, "role": "alertdialog" }).removeClass("a11y-none");
+
+	// add card to sidebar
 	$("#definitions").html(card).find("dt, dd").addClass("fadeIn");
+
+	// dismissal listener
 	$("#definitions dt").one("click", function (evt) {
 		var $card = $(this).next('dd').add(this);
 		if ( $("html").hasClass("csstransitions") ) {
 			$card.removeClass("fadeIn").on("webkitTransitionEnd oTransitionEnd transitionend msTransitionEnd", function () {
 				$card.remove();
+				$def.attr({ "aria-hidden": true, "role": null }).addClass("a11y-none");
 			});
 		} else {
 			$card.removeClass("fadeIn").remove();
+			$def.attr({ "aria-hidden": true, "role": null }).addClass("a11y-none");
 		}
 	});
 });

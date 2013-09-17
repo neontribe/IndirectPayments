@@ -375,9 +375,9 @@ p * { line-height: 1; }
 strong, abbr, b { font-weight:700 }
 em, cite, q { font-style: italic }
 del { text-decoration: line-through }
-abbr[title], dfn[title] { cursor: help }
+abbr[title], dfn[title], .term { cursor: help }
 
-abbr {
+abbr, .term {
 	background: #C1D1BF;
 	padding: 0 0.5em;
 }
@@ -448,7 +448,7 @@ figure:before {
 	content: '\1f4a1';
 	font-size: 4em;
 	line-height: 0;
-	display: inline-block; 
+	display: inline-block;
 	color: #E8DD11;
 }
 
@@ -574,7 +574,7 @@ label input {
 ----------------------------------------------------------------------
 */
 
-button, [role="button"], [role="button"]:visited, [role="button"]:hover,
+button, a[role="button"], a[role="button"]:visited, a[role="button"]:hover,
 [type="submit"], [type="reset"], #menu {
 	background: #00AFB6;
 	border: 0;
@@ -706,6 +706,10 @@ div.group-bottom > * { vertical-align: baseline }
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
+}
+
+.a11y-none {
+	display: none;
 }
 
 /**
