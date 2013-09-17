@@ -1,11 +1,11 @@
 /** Variables
 * --------------------------------------------------------------
 
-#3A525F = font color
+#4b565e = font color
 #fefefe = light font color
-#009fbb = link color
+#00AFB6 = link color
 #9cd5e2 = link color light
-#027a8f = link color dark
+#008489 = link color dark
 
 */
 
@@ -76,9 +76,9 @@ body {
 	line-height: 1;
 	font-weight: 400;
 	font-family: 'Gudea', sans-serif;
-	color: #3A525F;
+	color: #4b565e;
 	padding: 3em 1.33em;
-	background: #3A525F;
+	background: #4b565e;
 }
 
 /**
@@ -87,12 +87,12 @@ body {
 */
 
 a, a:visited {
-	color: #009fbb;
+	color: #00AFB6;
 	text-decoration: none;
 }
 
 a:hover {
-	color: #027a8f;
+	color: #008489;
 }
 
 a:focus { outline: thin dotted; }
@@ -124,6 +124,12 @@ p + p {
 
 blockquote, figure {
 	padding: 1.33rem;
+}
+
+figure {
+	line-height: 1.33;
+	text-align: left;
+	border: 1px solid;
 }
 
 blockquote p {
@@ -197,7 +203,7 @@ dl {
 }
 
 dt, dd {
-	background: #c8e0d2;
+	background: #C1D1BF;
 	padding: 0.75em;
 	margin: 0.75em;
 	box-shadow: 5px 5px 0 #222;
@@ -228,7 +234,7 @@ dd {
 }
 
 [role="navigation"] ul {
-	background: #009fbb;
+	background: #00AFB6;
 	margin-top: 0;
 	padding-top: 0.75em;
 }
@@ -257,7 +263,8 @@ dd {
 
 a[aria-selected]:after {
 	font-family: entypo;
-	content: '\0020\e4ae';
+	content: '\e4ae';
+	padding: 0 0 0 0.25em;
 	font-size: 1.5em;
 	line-height: 0;
 	position: relative;
@@ -274,13 +281,13 @@ a[aria-selected]:after {
 	text-transform: uppercase;
 	color: #fff;
 	font-weight: bold;
-	background: #027a8f;
+	background: #008489;
 	position: relative;
 }
 
 [role="navigation"] h2:after {
 	content: '\25bc';
-	color: #027a8f;
+	color: #008489;
     display: block;
     position: absolute;
     text-align: center;
@@ -302,7 +309,7 @@ a[aria-selected]:after {
 }
 
 #auxNav a:hover, #auxNav a:focus {
-	color: #027a8f;
+	color: #008489;
 }
 
 /**
@@ -366,7 +373,7 @@ del { text-decoration: line-through }
 abbr[title], dfn[title] { cursor: help }
 
 abbr {
-	background: #c8e0d2;
+	background: #C1D1BF;
 	padding: 0 0.5em;
 }
 
@@ -426,8 +433,18 @@ img {
 }
 
 figure {
-	padding: 0.75em 0;
-	text-align: center;
+	padding: 0.75em;
+	text-align: left;
+	position: relative;
+}
+
+figure:before {
+	font-family: entypo, 'varela round', sans-serif;
+	content: '\1f4a1';
+	font-size: 4em;
+	line-height: 0;
+	display: inline-block; 
+	color: #E8DD11;
 }
 
 figure img {
@@ -445,7 +462,7 @@ figcaption {
 */
 
 pre {
-	background: #3A525F;
+	background: #4b565e;
 	color: #fefefe;
 	padding: 1.33rem;
 	font-family: 'Lucida Console', monospace;
@@ -480,7 +497,7 @@ Uses the format
 
 fieldset {
 	padding: 1.33em;
-	border: 2px solid #3A525F;
+	border: 2px solid #4b565e;
 }
 
 legend {
@@ -509,7 +526,7 @@ input, textarea, select {
 	line-height: 1.33;
 	width: 100%;
 	padding: 0.25em;
-	border: 2px solid #3A525F;
+	border: 2px solid #4b565e;
 }
 
 button::-moz-focus-inner,
@@ -524,7 +541,7 @@ form p + p {
 }
 
 input:focus, textarea:focus, select:focus {
-	outline: 2px solid #3A525F;
+	outline: 2px solid #4b565e;
 }
 
 option {
@@ -551,7 +568,7 @@ label input {
 
 button, [role="button"], [role="button"]:visited, [role="button"]:hover,
 [type="submit"], [type="reset"], #menu {
-	background: #009fbb;
+	background: #00AFB6;
 	border: 0;
 	color: #fefefe;
 	display: inline-block;
@@ -573,7 +590,7 @@ button:focus, [role="button"]:focus,
 
 button:active, [role="button"]:active,
 [type="submit"]:active, [type="reset"]:active {
-	background: #027a8f;
+	background: #008489;
 	border: 0;
 }
 
@@ -697,7 +714,7 @@ div.group-bottom > * { vertical-align: baseline }
 
 .box dt  a {
 	padding: 12px 12px;
-	background: #009fbb;
+	background: #00AFB6;
 	display: block;
 	color: #fefefe;
 	font-style: normal;
@@ -725,7 +742,7 @@ div.group-bottom > * { vertical-align: baseline }
 }
 
 .box dt  a:hover, .box a:active, .box a:focus {
-	background: #027a8f;
+	background: #008489;
 }
 
 /**
@@ -751,7 +768,7 @@ div.group-bottom > * { vertical-align: baseline }
 
 li.tabs-selected a {
 	background: #fefefe;
-	color: #3A525F;
+	color: #4b565e;
 }
 
 .tabs-body {
@@ -771,13 +788,18 @@ body {
 	margin-top: 0;
 }
 
+[role="main"] h1 {
+	padding-bottom: 1.33rem;
+	border-bottom: 3px solid;
+}
+
 .snap-drawer {
 	background: #b8d6e7;
 	margin-top: 0;
 }
 
 .snap-drawer-right {
-	background: #3A525F;
+	background: #4b565e;
 }
 
 #controls {
@@ -788,7 +810,7 @@ body {
 	right: 0;
 	height: 60px;
 	padding: 10px;
-	background: #3A525F;
+	background: #4b565e;
 	text-align: right;
 }
 
@@ -799,7 +821,7 @@ body {
 }
 
 #controls button:hover, #menu:hover, #controls button:focus, #menu:focus {
-	color: #009fbb;
+	color: #00AFB6;
 }
 
 #menu:before {
