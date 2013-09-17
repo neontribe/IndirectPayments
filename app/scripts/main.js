@@ -281,9 +281,13 @@ $("#container").on("click", "abbr", function (evt) {
 	$("#definitions").html(card).find("dt, dd").addClass("fadeIn");
 	$("#definitions dt").one("click", function (evt) {
 		var $card = $(this).next('dd').add(this);
-		$card.removeClass("fadeIn").on("webkitTransitionEnd oTransitionEnd transitionend msTransitionEnd", function () {
-			$card.remove();
-		});
+		if ( $("html").hasClass("csstransitions") ) {
+			$card.removeClass("fadeIn").on("webkitTransitionEnd oTransitionEnd transitionend msTransitionEnd", function () {
+				$card.remove();
+			});
+		} else {
+			$card.removeClass("fadeIn").remove();
+		}
 	});
 });
 
