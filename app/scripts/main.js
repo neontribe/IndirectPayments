@@ -255,7 +255,7 @@ $("body").on("click", "#menu", function (evt) {
 	var data = snapper.state();
 	if ( data.state === "closed" ) {
 		snapper.open("left");
-		$('sideNav').focus();
+		$("#sideNav").focus();
 	} else {
 		snapper.close();
 	}
@@ -276,7 +276,10 @@ $("#container").on("click", ".term", function (evt) {
 	$def.attr({ "aria-hidden": false, "role": "alertdialog" }).removeClass("a11y-none");
 
 	// add card to sidebar
-	$("#definitions").html(card).find("dt, dd").addClass("fadeIn");
+	$("#definitions").html(card).find("dt, dd");
+	setTimeout(function () {
+		$("#definitions").find("dt, dd").addClass("fadeIn"); // without the timeout, the transition does't work in FF
+	}, 100);
 
 	// open sidebar if necessary
 	if ( snapperEnabled && snapper.state().state === "closed" ) {
