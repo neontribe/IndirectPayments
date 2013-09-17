@@ -17,7 +17,8 @@ var webHostName = "indirectpayments.neontribe.co.uk",
 		active: null
 	},
 	webHosts = [webHostName, "mottokrosh.local"],
-	isApp = $.inArray(location.hostname, webHosts) === -1;
+	isApp = $.inArray(location.hostname, webHosts) === -1,
+	snapperEnabled = false;
 
 //
 // --- Expressions ---
@@ -197,9 +198,11 @@ function init_drawers() {
 	if ( $(window).width() <= options.drawersThreshold ) {
 		log("Enabling Snap");
 		snapper.enable();
+		snapperEnabled = true;
 	} else {
 		log("Disabling Snap");
 		snapper.disable();
+		snapperEnabled = false;
 	}
 }
 
@@ -252,7 +255,7 @@ $("body").on("click", "#menu", function (evt) {
 	var data = snapper.state();
 	if ( data.state === "closed" ) {
 		snapper.open("left");
-		$('sideNav').focus();
+		$("#sideNav").focus();
 	} else {
 		snapper.close();
 	}
@@ -273,7 +276,15 @@ $("#container").on("click", ".term", function (evt) {
 	$def.attr({ "aria-hidden": false, "role": "alertdialog" }).removeClass("a11y-none");
 
 	// add card to sidebar
-	$("#definitions").html(card).find("dt, dd").addClass("fadeIn");
+	$("#definitions").html(card).find("dt, dd");
+	setTimeout(function () {
+		$("#definitions").find("dt, dd").addClass("fadeIn"); // without the timeout, the transition does't work in FF
+	}, 100);
+
+	// open sidebar if necessary
+	if ( snapperEnabled && snapper.state().state === "closed" ) {
+		snapper.open("right");
+	}
 
 	// dismissal listener
 	$("#definitions dt").one("click", function (evt) {
@@ -282,10 +293,16 @@ $("#container").on("click", ".term", function (evt) {
 			$card.removeClass("fadeIn").on("webkitTransitionEnd oTransitionEnd transitionend msTransitionEnd", function () {
 				$card.remove();
 				$def.attr({ "aria-hidden": true, "role": null }).addClass("a11y-none");
+				if ( snapperEnabled && snapper.state().state === "right" ) {
+					snapper.close();
+				}
 			});
 		} else {
 			$card.removeClass("fadeIn").remove();
 			$def.attr({ "aria-hidden": true, "role": null }).addClass("a11y-none");
+			if ( snapperEnabled && snapper.state().state === "right" ) {
+				snapper.close();
+			}
 		}
 	});
 });
