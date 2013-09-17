@@ -89,7 +89,7 @@ function case_studies(slug) {
 			text = all_html($(v).nextUntil("h3")),
 			regex = new RegExp('\\[case_study number="' + number + '"\\]', "gi");
 
-		$("#container section:not(.case-studies) p").replaceText(regex, '<details><summary>' + title + '</summary>' + text + '</details>');
+		$("#container section:not(.case-studies) p").replaceText(regex, '<details><summary>' + title + '</summary><div>' + text + '</div></details>');
 	});
 	$("details").unwrap();
 }

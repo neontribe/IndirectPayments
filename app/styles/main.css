@@ -378,12 +378,22 @@ del { text-decoration: line-through }
 abbr[title], dfn[title], .term { cursor: help }
 
 abbr, .term {
-	background: #C1D1BF;
-	padding: 0 0.5em;
+	border-bottom: 2px dotted #00AFB6;
 }
 
-abbr:after {
+abbr:focus, abbr:hover, .term:focus, .term:hover {
+	background: transparent !important;
+	border-bottom-style: solid;
+}
 
+.term:after, abbr:after {
+	font-size: 1.25em;
+	color: #00AFB6;
+	vertical-align: super;
+	content: '\e704';
+	font-family: entypo;
+	font-weight: normal;
+	line-height: 0;
 }
 
 small {
@@ -815,6 +825,15 @@ body {
 	background: #4b565e;
 }
 
+.snap-drawer-right dt:before {
+	font-family: entypo;
+	font-size: 1.5em; 
+	line-height: 1;
+	content: '\E704';
+	padding: 0 0.25em 0 0;
+	font-weight: normal;
+}
+
 #controls {
 	position: absolute;
 	z-index: 10;
@@ -915,14 +934,24 @@ button[disabled] {
 	opacity: 1;
 }
 
-details > *:not(summary) {
-	background: #c9ccce;
-	padding: 1em;
+summary {
+	display: block;
+	background: #00AFB6;
+	padding: 0.5em;
 	margin: 0;
+	font-weight: bold;
+	color: #fff;
 }
 
-summary {
-	font-weight: bold;
+summary:focus {
+	background: #008489 !important;
+}
+
+summary + div {
+	border: 1px solid;
+	border-top: 0;
+	padding: 0.75em; 
+	margin-top: 0;
 }
 
 summary[role="button"], summary[role="button"]:hover {
@@ -930,3 +959,4 @@ summary[role="button"], summary[role="button"]:hover {
 	letter-spacing: 0;
 	font-size: 1em;
 }
+
