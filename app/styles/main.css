@@ -111,6 +111,7 @@ p a:active { border-bottom: 3px solid }
 */
 
 body * + * {
+	margin-top: 26px;
 	margin-top: 1.33rem;
 }
 
@@ -123,6 +124,7 @@ p + p {
 }
 
 blockquote, figure {
+	padding: 26px;
 	padding: 1.33rem;
 }
 
@@ -251,6 +253,7 @@ dd {
 	padding: 0.75em 0.75em 0.75em 0;
 	display: block;
 	text-align: left;
+	font-size: 20px;
 	font-size: 1rem;
 	color: #fff;
 	font-family: 'varela round', sans-serif;
@@ -345,10 +348,12 @@ h2:first-letter {
 
 header > div {
 	border-bottom: 2px solid;
+	padding-bottom: 26px;
 	padding-bottom: 1.33rem;
 }
 
 header + * {
+	margin-top: 60px;
 	margin-top: 3rem;
 }
 
@@ -453,6 +458,7 @@ figure img {
 
 figcaption {
 	font-style: italic;
+	margin-top: 15px;
 	margin-top: 0.75rem;
 }
 
@@ -464,6 +470,7 @@ figcaption {
 pre {
 	background: #4b565e;
 	color: #fefefe;
+	padding: 26px;
 	padding: 1.33rem;
 	font-family: 'Lucida Console', monospace;
 	white-space: pre-wrap;
@@ -501,6 +508,7 @@ fieldset {
 }
 
 legend {
+	font-size: 25px;
 	font-size: 1.25rem;
 	font-style: italic;
 	padding: 0 0.5em;
@@ -632,6 +640,7 @@ div[class^="group"] {
 }
 
 div[class^="group"] > * {
+	font-size: 20px;
 	font-size: 1rem; /* override reset in above rule */
 	display: inline-block; /* floats are for losers */
 	vertical-align: top;
@@ -847,6 +856,10 @@ button[disabled] {
 	background: #fff;
 	padding: 1.5em;
 	box-shadow: 10px 10px #222222;
+}
+
+#container, h1 {
+	overflow: hidden;
 }
 
 #content section {
