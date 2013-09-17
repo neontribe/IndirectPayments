@@ -281,7 +281,7 @@ $("#container").on("click", "abbr", function (evt) {
 	$("#definitions").html(card).find("dt, dd").addClass("fadeIn");
 	$("#definitions dt").one("click", function (evt) {
 		var $card = $(this).next('dd').add(this);
-		if ( $("body").hasClass("csstransitions").length ) {
+		if ( $("html").hasClass("csstransitions") ) {
 			$card.removeClass("fadeIn").on("webkitTransitionEnd oTransitionEnd transitionend msTransitionEnd", function () {
 				$card.remove();
 			});
