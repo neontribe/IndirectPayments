@@ -17,7 +17,8 @@ var webHostName = "indirectpayments.neontribe.co.uk",
 		active: null
 	},
 	webHosts = [webHostName, "mottokrosh.local"],
-	isApp = $.inArray(location.hostname, webHosts) === -1;
+	isApp = $.inArray(location.hostname, webHosts) === -1,
+	snapperEnabled = false;
 
 //
 // --- Expressions ---
@@ -197,9 +198,11 @@ function init_drawers() {
 	if ( $(window).width() <= options.drawersThreshold ) {
 		log("Enabling Snap");
 		snapper.enable();
+		snapperEnabled = true;
 	} else {
 		log("Disabling Snap");
 		snapper.disable();
+		snapperEnabled = false;
 	}
 }
 
@@ -275,6 +278,11 @@ $("#container").on("click", ".term", function (evt) {
 	// add card to sidebar
 	$("#definitions").html(card).find("dt, dd").addClass("fadeIn");
 
+	// open sidebar if necessary
+	if ( snapperEnabled && snapper.state().state === "closed" ) {
+		snapper.open("right");
+	}
+
 	// dismissal listener
 	$("#definitions dt").one("click", function (evt) {
 		var $card = $(this).next('dd').add(this);
@@ -282,10 +290,16 @@ $("#container").on("click", ".term", function (evt) {
 			$card.removeClass("fadeIn").on("webkitTransitionEnd oTransitionEnd transitionend msTransitionEnd", function () {
 				$card.remove();
 				$def.attr({ "aria-hidden": true, "role": null }).addClass("a11y-none");
+				if ( snapperEnabled && snapper.state().state === "right" ) {
+					snapper.close();
+				}
 			});
 		} else {
 			$card.removeClass("fadeIn").remove();
 			$def.attr({ "aria-hidden": true, "role": null }).addClass("a11y-none");
+			if ( snapperEnabled && snapper.state().state === "right" ) {
+				snapper.close();
+			}
 		}
 	});
 });
