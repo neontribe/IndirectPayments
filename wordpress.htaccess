@@ -1,0 +1,25 @@
+<IfModule mod_headers.c>
+	Header set X-UA-Compatible "IE=Edge,chrome=1"
+	# mod_headers can't match by content-type, but we don't want to send this header on *everything*...
+	<FilesMatch "\.(js|css|gif|png|jpe?g|pdf|xml|oga|ogg|m4a|ogv|mp4|m4v|webm|svg|svgz|eot|ttf|otf|woff|$
+		Header unset X-UA-Compatible
+	</FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /
+	RewriteCond %{REQUEST_URI} !^/(wp-|api|index)
+	RewriteRule (.*) /app/$1 [L,QSA]
+</IfModule>
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /
+	RewriteRule ^index\.php$ - [L]
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
