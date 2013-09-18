@@ -9,5 +9,7 @@
     "jquery-details": "~0.1.0",
     "json3": "~3.2.5"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "qunit": "~1.12.0"
+  }
 }
