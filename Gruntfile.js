@@ -145,9 +145,8 @@ module.exports = function (grunt) {
                 files: {
                     src: [
                         '<%= yeoman.dist %>/scripts/{,*/}*.js',
-                        '<%= yeoman.dist %>/styles/{,*/}*.css',
-                        '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
-                        '<%= yeoman.dist %>/styles/fonts/{,*/}*.*'
+                        '<%= yeoman.dist %>/styles/{,*/}*.{css,eot,svg,ttf,woff,png,jpg,jpeg,gif,webp}',
+                        '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
                     ]
                 }
             }
@@ -234,7 +233,7 @@ module.exports = function (grunt) {
                         '*.{ico,png,txt}',
                         '.htaccess',
                         'images/{,*/}*.{webp,gif}',
-                        'styles/fonts/{,*/}*.*'
+                        'styles/{,*/}*.{eot,svg,ttf,woff,png,jpg,jpeg,gif,webp}'
                     ]
                 }]
             },
@@ -243,7 +242,7 @@ module.exports = function (grunt) {
                 dot: true,
                 cwd: '<%= yeoman.app %>/styles',
                 dest: '.tmp/styles/',
-                src: '{,*/}*.css'
+                src: ['{,*/}*.css', '../bower_components/**/*.css']
             }
         },
         modernizr: {
@@ -270,6 +269,10 @@ module.exports = function (grunt) {
                 'htmlmin'
             ]
         }
+    });
+
+    grunt.registerTask('content', 'Fetch content and store in local JSON files', function () {
+
     });
 
     grunt.registerTask('server', function (target) {
