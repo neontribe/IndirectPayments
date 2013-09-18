@@ -827,7 +827,7 @@ body {
 
 .snap-drawer-right dt:before {
 	font-family: entypo;
-	font-size: 1.5em; 
+	font-size: 1.5em;
 	line-height: 1;
 	content: '\E704';
 	padding: 0 0.25em 0 0;
@@ -916,9 +916,11 @@ button[disabled] {
 }
 
 #definitions dt, #definitions dd {
-	transition: all 0.3s linear;
+	transition: all 0.3s ease;
 	opacity: 0;
 	position: relative;
+	left: -265px;
+	transform: translate3d(0, 0, 0);
 }
 
 #definitions .close {
@@ -932,6 +934,7 @@ button[disabled] {
 
 #definitions dt.fadeIn, #definitions dd.fadeIn {
 	opacity: 1;
+	left: 0;
 }
 
 summary {
@@ -950,7 +953,7 @@ summary:focus {
 summary + div {
 	border: 1px solid;
 	border-top: 0;
-	padding: 0.75em; 
+	padding: 0.75em;
 	margin-top: 0;
 }
 
