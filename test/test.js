@@ -1,4 +1,4 @@
-module("Basic");
+module("Main");
 
 test("Content Display", function () {
 	var app = frames["app"].document;
@@ -7,6 +7,34 @@ test("Content Display", function () {
 });
 
 test("Glossary", function () {
-	var app = frames["app"].document;
-	ok($(".glossary h3", app).length, "One or more glossary items present");
+	var app = frames["app"].document,
+		termsCount = $(".glossary h3", app).length,
+		termsWrappedCount = $(".term", app).length;
+
+	ok(termsCount, "One or more glossary items present");
+	ok(termsWrappedCount >= termsCount, "Glossary terms marked up in content");
+	ok($(".definition", app).length === termsWrappedCount, "Each marked up term has a definition");
+	ok($("#definitions dt", app).length === 0, "Definitions list is initially empty");
+
+	$(".term:first", app).trigger("click");
+
+	ok($("#definitions dt", app).length === 1, "After clicking term, definitions list contains card");
+
+	$("html", app).removeClass("csstransitions");
+	$("#definitions dt .close", app).trigger("click");
+
+	ok($("#definitions dt", app).length === 0, "Clicking close icon removes card from definitions list");
+});
+
+test("Case Studies", function () {
+	var app = frames["app"].document,
+		$detail = $("details:first", app);
+
+	ok($(".case-studies h3", app).length, "One or more case studies present");
+	ok($("details", app).length, "One or more case studies turned into inline details blocks");
+	ok(!$detail.find("> div").is(":visible"), "First details' content initially hidden");
+
+	$detail.find("summary").trigger("click");
+
+	ok($detail.find("> div").is(":visible"), "Clicking summary reveals details content");
 });
