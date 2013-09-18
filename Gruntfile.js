@@ -21,7 +21,9 @@ module.exports = function (grunt) {
     // configurable paths
     var yeomanConfig = {
         app: 'app',
-        dist: 'dist'
+        dist: 'dist',
+        apiPosts: 'http://indirectpayments.neontribe.co.uk/api/get_posts/',
+        apiPages: 'http://indirectpayments.neontribe.co.uk/api/get_page_index/'
     };
 
     grunt.initConfig({
@@ -268,11 +270,35 @@ module.exports = function (grunt) {
                 'svgmin',
                 'htmlmin'
             ]
+        },
+        fetchpages: {
+            app: {
+                options: {
+                    urls: [
+                        // list of remote urls to fetch, local destination file name (localFile) required
+                        { url: '<%= yeoman.apiPosts %>', localFile: 'content/posts.json' },
+                        { url: '<%= yeoman.apiPages %>', localFile: 'content/pages.json' }
+                    ],
+                    // base url for fetching pages via GruntJS files feature
+                    filesBaseURL: 'http://indirectpayments.neontribe.co.uk/api/',
+                    // local target folder for fetched pages
+                    target: '<%= yeoman.app %>'
+                }
+            },
+            dist: {
+                options: {
+                    urls: [
+                        // list of remote urls to fetch, local destination file name (localFile) required
+                        { url: '<%= yeoman.apiPosts %>', localFile: 'content/posts.json' },
+                        { url: '<%= yeoman.apiPages %>', localFile: 'content/pages.json' }
+                    ],
+                    // base url for fetching pages via GruntJS files feature
+                    filesBaseURL: 'http://indirectpayments.neontribe.co.uk/api/',
+                    // local target folder for fetched pages
+                    target: '<%= yeoman.dist %>'
+                }
+            }
         }
-    });
-
-    grunt.registerTask('content', 'Fetch content and store in local JSON files', function () {
-
     });
 
     grunt.registerTask('server', function (target) {
@@ -308,7 +334,8 @@ module.exports = function (grunt) {
         'modernizr',
         'copy:dist',
         'rev',
-        'usemin'
+        'usemin',
+        'fetchpages:dist'
     ]);
 
     /*grunt.registerTask('default', [

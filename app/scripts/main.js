@@ -206,6 +206,29 @@ function init_drawers() {
 	}
 }
 
+function init_content() {
+	if ( !localStorage["posts"] ) {
+		$.ajax({
+			dataType: "json",
+			async: false,
+			url: "content/posts.json",
+			success: function (data) {
+				localStorage["posts"] = JSON.stringify(data.posts);
+			}
+		});
+	}
+	if ( !localStorage["pages"] ) {
+		$.ajax({
+			dataType: "json",
+			async: false,
+			url: "content/pages.json",
+			success: function (data) {
+				localStorage["pages"] = JSON.stringify(data.pages);
+			}
+		});
+	}
+}
+
 //
 // --- Listeners ---
 //
@@ -327,6 +350,7 @@ var snapper = new Snap({
 init_drawers();
 
 // display locally stored content
+init_content();
 display_posts(localStorage["posts"]);
 display_pages(localStorage["pages"]);
 
