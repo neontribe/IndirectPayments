@@ -22,8 +22,7 @@ module.exports = function (grunt) {
     var yeomanConfig = {
         app: 'app',
         dist: 'dist',
-        apiPosts: 'http://indirectpayments.neontribe.co.uk/api/get_posts/',
-        apiPages: 'http://indirectpayments.neontribe.co.uk/api/get_page_index/'
+        apiPosts: 'http://indirectpayments.neontribe.co.uk/api/get_posts/'
     };
 
     grunt.initConfig({
@@ -276,8 +275,7 @@ module.exports = function (grunt) {
                 options: {
                     urls: [
                         // list of remote urls to fetch, local destination file name (localFile) required
-                        { url: '<%= yeoman.apiPosts %>', localFile: 'content/posts.json' },
-                        { url: '<%= yeoman.apiPages %>', localFile: 'content/pages.json' }
+                        { url: '<%= yeoman.apiPosts %>', localFile: 'content/posts.json' }
                     ],
                     // base url for fetching pages via GruntJS files feature
                     filesBaseURL: 'http://indirectpayments.neontribe.co.uk/api/',
@@ -289,8 +287,7 @@ module.exports = function (grunt) {
                 options: {
                     urls: [
                         // list of remote urls to fetch, local destination file name (localFile) required
-                        { url: '<%= yeoman.apiPosts %>', localFile: 'content/posts.json' },
-                        { url: '<%= yeoman.apiPages %>', localFile: 'content/pages.json' }
+                        { url: '<%= yeoman.apiPosts %>', localFile: 'content/posts.json' }
                     ],
                     // base url for fetching pages via GruntJS files feature
                     filesBaseURL: 'http://indirectpayments.neontribe.co.uk/api/',
