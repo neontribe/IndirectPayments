@@ -243,14 +243,12 @@ $("body").on("click", "a[href*='#']:not([href='#']):not(#menu)", function (evt) 
 		if ( $target.length ) {
 			evt.preventDefault();
 			var offset = $target.offset().top + $("#content").scrollTop() - ( options.viewportThreshold + options.scrollTopPadding ),
-				velocity = 1200.0,  // pixels per second
-				duration = Math.abs( parseFloat($target.offset().top - ( options.viewportThreshold + options.scrollTopPadding ) ) / velocity );
+				duration = 1;
 
 			// save current position before moving on
 			save_position();
 
 			// scroll
-			log(this.hash, offset, duration, lastPosition);
 			$("#content").animate({ scrollTop: offset }, duration * 1000, function () {
 				set_hash(target);
 			});
