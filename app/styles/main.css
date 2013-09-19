@@ -903,6 +903,11 @@ body {
 }
 
 @media all and (max-width: 800px) {
+	
+	html {
+		font-size: 100%;
+	}
+	
 	#content {
 		left: 0;
 		right: 0;
@@ -912,6 +917,10 @@ body {
 		overflow: visible;
 		height: auto;
 		width: auto;
+	}
+	
+	#back {
+		margin-right: 0;
 	}
 
 }
