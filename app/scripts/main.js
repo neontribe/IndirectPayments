@@ -309,7 +309,8 @@ $("#content").on("scroll", _.throttle( scroll_handler, 100 ));
 
 // set up drawers
 var snapper = new Snap({
-	element: document.getElementById('content')
+	element: document.getElementById('content'),
+	touchToDrag: false
 });
 init_drawers();
 
