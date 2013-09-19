@@ -8,6 +8,7 @@ var webHostName = "indirectpayments.neontribe.co.uk",
 		viewportThreshold: 60,
 		scrollTopPadding: 20,
 		drawersThreshold: 800,
+		scrollDuration: 1000,
 		debug: true
 	},
 	lastPosition = [],
@@ -208,16 +209,19 @@ $("body").on("click", "a[href*='#']:not([href='#']):not(#menu)", function (evt) 
 
 		if ( $target.length ) {
 			evt.preventDefault();
-			var offset = $target.offset().top + $("#content").scrollTop() - ( options.viewportThreshold + options.scrollTopPadding ),
-				duration = 1;
+			var offset = $target.offset().top + $("#content").scrollTop() - ( options.viewportThreshold + options.scrollTopPadding );
 
 			// save current position before moving on
 			save_position();
 
 			// scroll
-			$("#content").animate({ scrollTop: offset }, duration * 1000, function () {
+			$("#content").animate({ scrollTop: offset }, options.scrollDuration, function () {
 				set_hash(target);
 			});
+
+			if ( snapper.state().state === "left" ) {
+				setTimeout(snapper.close, options.scrollDuration);
+			}
 		}
 	}
 });
