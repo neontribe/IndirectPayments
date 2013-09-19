@@ -288,16 +288,6 @@ a[aria-selected]:after {
 	position: relative;
 }
 
-[role="navigation"] h2:after {
-	content: '\25bc';
-	color: #008489;
-    display: block;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-	font-size: 0.8em
-}
-
 #auxNav {
 	padding: 0 0.75em 1.5em;
 }
@@ -378,7 +368,10 @@ del { text-decoration: line-through }
 abbr[title], dfn[title], .term { cursor: help }
 
 abbr, .term {
-	border-bottom: 2px dotted #00AFB6;
+    border-bottom: 2px dotted #00AFB6;
+    display: inline-block;
+    margin-right: 0.75em;
+    position: relative;
 }
 
 abbr:focus, abbr:hover, .term:focus, .term:hover {
@@ -387,13 +380,15 @@ abbr:focus, abbr:hover, .term:focus, .term:hover {
 }
 
 .term:after, abbr:after {
-	font-size: 1.25em;
-	color: #00AFB6;
-	vertical-align: super;
-	content: '\e704';
-	font-family: entypo;
-	font-weight: normal;
-	line-height: 0;
+    color: #00AFB6;
+    content: '\e704';
+    font-family: entypo;
+    font-size: 1.25em;
+    font-weight: normal;
+    line-height: 0;
+    position: absolute;
+    right: -0.6em;
+    vertical-align: super;
 }
 
 small {
@@ -454,12 +449,15 @@ figure {
 }
 
 figure:before {
-	font-family: entypo, 'varela round', sans-serif;
-	content: '\1f4a1';
-	font-size: 4em;
-	line-height: 0;
-	display: inline-block;
-	color: #E8DD11;
+    color: #E8DD11;
+    content: "💡";
+    display: inline-block;
+    float: left;
+    font-family: entypo,'varela round',sans-serif;
+    font-size: 5em;
+    height: 2rem;
+    line-height: 0;
+    width: 2.5rem;
 }
 
 figure img {
@@ -710,12 +708,17 @@ div.group-bottom > * { vertical-align: baseline }
 */
 
 .a11y-hide {
-	display: inline-block;
-	height: 0;
-	width: 0;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
+    display: inline-block !important;
+    height: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 0 !important;
+}
+
+.a11y-hide + * {
+	margin-top: 0;
 }
 
 .a11y-none {
@@ -860,7 +863,7 @@ body {
 	content: '\2630\0020';
 }
 
-button[disabled] {
+#controls button[disabled] {
 	visibility: hidden;
 }
 
@@ -893,12 +896,10 @@ button[disabled] {
 
 #menu {
 	display: inline-block;
-	height: 0;
-	width: 0;
-	overflow: hidden;
 	float: left;
-	margin: 0;
-	padding: 0;
+	width: 228px; 
+	text-align: center;
+	margin-top: 0;
 }
 
 @media all and (max-width: 800px) {
@@ -944,6 +945,7 @@ summary {
 	margin: 0;
 	font-weight: bold;
 	color: #fff;
+	cursor: pointer;
 }
 
 summary:focus {
