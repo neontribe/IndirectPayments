@@ -844,15 +844,15 @@ body {
 	left: 0;
 	right: 0;
 	height: 60px;
-	padding: 10px;
+	line-height: 60px;
 	background: #4b565e;
 	text-align: right;
 }
 
 #controls button, #menu {
 	background: transparent;
-	line-height: 40px;
 	padding: 0;
+	padding-right: 1.5rem;
 }
 
 #controls button:hover, #menu:hover, #controls button:focus, #menu:focus {
@@ -895,19 +895,19 @@ body {
 }
 
 #menu {
-	display: inline-block;
 	float: left;
-	width: 228px; 
+	width: 265px;
 	text-align: center;
 	margin-top: 0;
+	padding-left: 1.5rem;
 }
 
 @media all and (max-width: 800px) {
-	
+
 	html {
 		font-size: 100%;
 	}
-	
+
 	#content {
 		left: 0;
 		right: 0;
@@ -918,7 +918,7 @@ body {
 		height: auto;
 		width: auto;
 	}
-	
+
 	#back {
 		margin-right: 0;
 	}
