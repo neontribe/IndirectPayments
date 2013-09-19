@@ -2,13 +2,13 @@ var webHostName = "indirectpayments.neontribe.co.uk",
 	apiBase = "http://" + webHostName + "/api/",
 	options = {
 		apiEndpoints: {
-			posts: apiBase + "get_posts/",
-			pages: apiBase + "get_page_index/"
+			posts: apiBase + "get_posts/?count=100"
 		},
 		historyLimit: 10,
 		viewportThreshold: 60,
 		scrollTopPadding: 20,
 		drawersThreshold: 800,
+		scrollDuration: 1000,
 		debug: true
 	},
 	lastPosition = [],
@@ -53,9 +53,9 @@ function nano(template, data) {
 	});
 }
 
-function get_latest_content(type, successCallback) {
+function get_latest_content(successCallback) {
 	$.ajax({
-		url: options.apiEndpoints[type],
+		url: options.apiEndpoints["posts"],
 		cache: false,
 		success: successCallback,
 		error: function (xhr, textStatus, thrownError) {
@@ -136,29 +136,6 @@ function display_posts(posts) {
 	cache.articles = $("#container h2");
 }
 
-function display_pages(pages) {
-	if ( !pages ) {
-		return;
-	}
-
-	// reset contents
-	$("#auxNav ul").html("");
-
-	// parse if necessary
-	if ( !$.isArray(pages) ) {
-		pages = JSON.parse(pages);
-	}
-
-	// content
-	$.each(pages, function (i, page) {
-		if ( isApp && page.custom_fields && page.custom_fields.exclude_in_app ) {
-			// skip this page
-		} else {
-			$("#auxNav ul").append(nano('<li><a href="#{slug}">{title}</a></li>', page));
-		}
-	});
-}
-
 function set_hash(target) {
 	if ( !target.match(/^#/) ) {
 		target = "#" + target;
@@ -217,16 +194,6 @@ function init_content() {
 			}
 		});
 	}
-	if ( !localStorage["pages"] ) {
-		$.ajax({
-			dataType: "json",
-			async: false,
-			url: "content/pages.json",
-			success: function (data) {
-				localStorage["pages"] = JSON.stringify(data.pages);
-			}
-		});
-	}
 }
 
 //
@@ -242,16 +209,19 @@ $("body").on("click", "a[href*='#']:not([href='#']):not(#menu)", function (evt) 
 
 		if ( $target.length ) {
 			evt.preventDefault();
-			var offset = $target.offset().top + $("#content").scrollTop() - ( options.viewportThreshold + options.scrollTopPadding ),
-				duration = 1;
+			var offset = $target.offset().top + $("#content").scrollTop() - ( options.viewportThreshold + options.scrollTopPadding );
 
 			// save current position before moving on
 			save_position();
 
 			// scroll
-			$("#content").animate({ scrollTop: offset }, duration * 1000, function () {
+			$("#content").animate({ scrollTop: offset }, options.scrollDuration, function () {
 				set_hash(target);
 			});
+
+			if ( snapper.state().state === "left" ) {
+				setTimeout(snapper.close, options.scrollDuration);
+			}
 		}
 	}
 });
@@ -343,17 +313,17 @@ $("#content").on("scroll", _.throttle( scroll_handler, 100 ));
 
 // set up drawers
 var snapper = new Snap({
-	element: document.getElementById('content')
+	element: document.getElementById('content'),
+	touchToDrag: false
 });
 init_drawers();
 
 // display locally stored content
 init_content();
 display_posts(localStorage["posts"]);
-display_pages(localStorage["pages"]);
 
 // attempt to get latest content from remote
-get_latest_content("posts", function (data) {
+get_latest_content(function (data) {
 	log(data);
 
 	// display it
@@ -361,17 +331,6 @@ get_latest_content("posts", function (data) {
 
 	// store it
 	localStorage["posts"] = JSON.stringify(data.posts);
-
-	// get pages too
-	get_latest_content("pages", function (data) {
-		log(data);
-
-		// display it
-		display_pages(data.pages);
-
-		// store it
-		localStorage["pages"] = JSON.stringify(data.pages);
-	});
 
 	// if we opened the page with a hash fragment, make sure its target is
 	// not hidden under the main navigation
