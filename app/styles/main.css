@@ -965,7 +965,7 @@ body {
 
 summary {
 	display: block;
-	background: #00AFB6 url(../images/icon_eye_white.png) no-repeat 0.5em center; 
+	background: #00AFB6 url(../images/icon_eye_white.png) no-repeat 0.5em center;
 	background-size: auto 1.5em;
 	padding: 0.75em 0.75em 0.75em 3em;
 	margin: 0;
@@ -1007,5 +1007,9 @@ summary[role="button"], summary[role="button"]:hover {
 }
 
 #sticky img {
-	box-shadow: 5px 5px #000;
+	box-shadow: 5px 5px #222;
+}
+
+p img {
+	display: none;
 }
