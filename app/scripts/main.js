@@ -119,17 +119,22 @@ function display_posts(posts) {
 	// content
 	$.each(posts, function (i, post) {
 		post.classes = _.pluck(post.tags, "slug").join(" ");
-		$("#container").append(nano('<section class="{classes}"><h2 id="{slug}">{title}</h2>{content}</section>', post));
-		$("#sideNav ul").append(nano('<li><a href="#{slug}">{title}</a></li>', post));
 
-		// special case for the glossary
-		if ( _.findWhere(post.tags, { slug: "glossary" }) ) {
-			glossary(post.slug);
-		}
+		if ( _.findWhere(post.tags, { slug: "app-prompt" }) ) {
+			$("#sticky").html(post.content);
+		} else {
+			$("#container").append(nano('<section class="{classes}"><h2 id="{slug}">{title}</h2>{content}</section>', post));
+			$("#sideNav ul").append(nano('<li><a href="#{slug}">{title}</a></li>', post));
 
-		// case studies
-		if ( _.findWhere(post.tags, { slug: "case-studies" }) ) {
-			case_studies(post.slug);
+			// special case for the glossary
+			if ( _.findWhere(post.tags, { slug: "glossary" }) ) {
+				glossary(post.slug);
+			}
+
+			// case studies
+			if ( _.findWhere(post.tags, { slug: "case-studies" }) ) {
+				case_studies(post.slug);
+			}
 		}
 	});
 
