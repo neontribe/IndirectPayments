@@ -196,9 +196,9 @@ p * { margin-top: 0 }
 /* for introductory paragraphs belonging to major sections */
 header p { font-size: 1.25em }
 
-li { list-style: disc inside }
+li { list-style: square outside; }
 
-ol li { list-style-type: decimal }
+ol li { list-style-type: decimal; }
 
 dl {
 
@@ -371,7 +371,7 @@ abbr[title], dfn[title], .term { cursor: help }
 abbr, .term {
     border-bottom: 2px dotted #00AFB6;
     display: inline-block;
-    margin-right: 0.75em;
+    /*margin-right: 0.75em;*/
     position: relative;
 }
 
@@ -380,7 +380,7 @@ abbr:focus, abbr:hover, .term:focus, .term:hover {
 	border-bottom-style: solid;
 }
 
-.term:after, abbr:after {
+/*.term:after, abbr:after {
     color: #00AFB6;
     content: '\e704';
     font-family: entypo;
@@ -390,7 +390,7 @@ abbr:focus, abbr:hover, .term:focus, .term:hover {
     position: absolute;
     right: -0.6em;
     vertical-align: super;
-}
+}*/
 
 small {
 	font-size: 0.9em;
@@ -895,6 +895,10 @@ body {
 	margin-right: auto;
 }
 
+#content li {
+	margin-left: 2em;
+}
+
 #menu {
 	float: left;
 	width: 265px;
@@ -929,8 +933,7 @@ body {
 #definitions dl {
 	transition: all 0.3s ease;
 	position: relative;
-	/*left: -265px;*/
-	width: 245px;
+	width: 265px;
 	-webkit-transform: translate3d(-265px, 0, 0);
 	-moz-transform: translate3d(-265px, 0, 0);
 	-ms-transform: translate3d(-265px, 0, 0);

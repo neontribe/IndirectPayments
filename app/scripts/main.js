@@ -243,12 +243,17 @@ $("body").on("click", "#back", function (evt) {
 
 // menu button
 $("body").on("click", "#menu", function (evt) {
-	var data = snapper.state();
-	if ( data.state === "closed" ) {
-		snapper.open("left");
-		$("#sideNav").focus();
+	evt.preventDefault();
+	if ( snapperEnabled ) {
+		var data = snapper.state();
+		if ( data.state === "closed" ) {
+			snapper.open("left");
+			$("#sideNav").focus();
+		} else {
+			snapper.close();
+		}
 	} else {
-		snapper.close();
+		$("#sideNav").focus();
 	}
 });
 
