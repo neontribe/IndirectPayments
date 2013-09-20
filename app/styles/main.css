@@ -14,7 +14,7 @@
 ----------------------------------------------------------------------
 */
 
-@import url(http://fonts.googleapis.com/css?family=Gudea:400,400italic,700);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic);
 @import url(http://fonts.googleapis.com/css?family=Varela+Round);
 
 @font-face {
@@ -75,7 +75,7 @@ html {
 body {
 	line-height: 1;
 	font-weight: 400;
-	font-family: 'Gudea', sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	color: #4b565e;
 	padding: 3em 1.33em;
 	background: #4b565e;
@@ -363,7 +363,7 @@ section + section {
 
 p * { line-height: 1; }
 
-strong, abbr, b { font-weight:700 }
+strong, abbr, b { font-weight:600 }
 em, cite, q { font-style: italic }
 del { text-decoration: line-through }
 abbr[title], dfn[title], .term { cursor: help }
@@ -447,18 +447,9 @@ figure {
 	padding: 0.75em;
 	text-align: left;
 	position: relative;
-}
-
-figure:before {
-    color: #E8DD11;
-    content: "💡";
-    display: inline-block;
-    float: left;
-    font-family: entypo,'varela round',sans-serif;
-    font-size: 5em;
-    height: 2rem;
-    line-height: 0;
-    width: 2.5rem;
+	padding-left: 2.75em;
+	background: url(../images/icon_bulb.png) no-repeat 0.75em 0.75em;
+	background-size: 1.5em auto;
 }
 
 figure img {
@@ -533,7 +524,7 @@ form div > * {
 
 label {
 	line-height: 1;
-	font-weight: 700;
+	font-weight: 600;
 }
 
 input, textarea, select {
@@ -592,7 +583,7 @@ button, a[role="button"], a[role="button"]:visited, a[role="button"]:hover,
 	font-size: 1.25em;
 	padding: 0.25em 0.5em;
 	text-transform: uppercase;
-	font-weight: 700;
+	font-weight: 600;
 	cursor: pointer;
 	letter-spacing: 2px;
 	width: auto;
@@ -974,8 +965,9 @@ body {
 
 summary {
 	display: block;
-	background: #00AFB6;
-	padding: 0.5em;
+	background: #00AFB6 url(../images/icon_eye_white.png) no-repeat 0.5em center; 
+	background-size: auto 1.5em;
+	padding: 0.75em 0.75em 0.75em 3em;
 	margin: 0;
 	font-weight: bold;
 	color: #fff;
@@ -983,7 +975,7 @@ summary {
 }
 
 summary:focus {
-	background: #008489 !important;
+	background-color: #008489 !important;
 }
 
 summary + div {
