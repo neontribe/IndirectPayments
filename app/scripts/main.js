@@ -254,22 +254,22 @@ $("body").on("click", "#menu", function (evt) {
 
 // glossary terms
 $("#container").on("click", ".term", function (evt) {
-	$("#definitions dt, #definitions dd").removeClass("fadeIn");
+	$("#definitions dt, #definitions dd").removeClass("slideIn");
 	var $term = $(this),
 		$def = $term.next("span"),
 		cardData = {
 			title: $term.text(),
 			definition: $def.text()
 		},
-		card = nano("<dt>{title} <span class='close'>&times;</span></dt><dd>{definition}</dd>", cardData);
+		card = nano("<dl><dt>{title} <span class='close'>&times;</span></dt><dd>{definition}</dd></dl>", cardData);
 
 	// accessibility
 	$def.attr({ "aria-hidden": false, "role": "alertdialog" }).removeClass("a11y-none");
 
 	// add card to sidebar
-	$("#definitions").html(card).find("dt, dd");
+	$("#definitions").html(card);
 	setTimeout(function () {
-		$("#definitions").find("dt, dd").addClass("fadeIn"); // without the timeout, the transition does't work in FF
+		$("#definitions dl").addClass("slideIn"); // without the timeout, the transition does't work in FF
 	}, 100);
 
 	// open sidebar if necessary
@@ -278,10 +278,10 @@ $("#container").on("click", ".term", function (evt) {
 	}
 
 	// dismissal listener
-	$("#definitions dt").one("click", function (evt) {
-		var $card = $(this).next('dd').add(this);
+	$("#definitions dl").one("click", function (evt) {
+		var $card = $(this);
 		if ( $("html").hasClass("csstransitions") ) {
-			$card.removeClass("fadeIn").on("webkitTransitionEnd oTransitionEnd transitionend msTransitionEnd", function () {
+			$card.removeClass("slideIn").on("webkitTransitionEnd oTransitionEnd transitionend msTransitionEnd", function () {
 				$card.remove();
 				$def.attr({ "aria-hidden": true, "role": null }).addClass("a11y-none");
 				if ( snapperEnabled && snapper.state().state === "right" ) {
@@ -289,7 +289,7 @@ $("#container").on("click", ".term", function (evt) {
 				}
 			});
 		} else {
-			$card.removeClass("fadeIn").remove();
+			$card.removeClass("slideIn").remove();
 			$def.attr({ "aria-hidden": true, "role": null }).addClass("a11y-none");
 			if ( snapperEnabled && snapper.state().state === "right" ) {
 				snapper.close();
