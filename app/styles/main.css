@@ -990,3 +990,22 @@ summary[role="button"], summary[role="button"]:hover {
 	letter-spacing: 0;
 	font-size: 1em;
 }
+
+#sticky {
+	text-align: center;
+}
+
+#sticky ul {
+	list-style: none;
+	margin: 0;
+}
+
+#sticky li {
+	margin: 0;
+	padding: 0.5em;
+	display: inline-block;
+}
+
+#sticky img {
+	box-shadow: 5px 5px #000;
+}
