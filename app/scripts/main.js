@@ -311,6 +311,8 @@ $("#content").on("scroll", _.throttle( scroll_handler, 100 ));
 // --- Init ---
 //
 
+FastClick.attach(document.body);
+
 // set up drawers
 var snapper = new Snap({
 	element: document.getElementById('content'),
