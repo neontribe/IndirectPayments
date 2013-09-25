@@ -258,7 +258,10 @@ $("body").on("click", "#menu", function (evt) {
 			snapper.close();
 		}
 	} else {
-		$("#sideNav").focus();
+		save_position();
+		$("#content").animate({ scrollTop: 0 }, options.scrollDuration, function () {
+			$("#sideNav").focus();
+		});
 	}
 });
 
