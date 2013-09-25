@@ -10,12 +10,9 @@
 */
 
 /**
-* Google fonts
+* Fonts
 ----------------------------------------------------------------------
 */
-
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic);
-@import url(http://fonts.googleapis.com/css?family=Varela+Round);
 
 @font-face {
     font-family: 'entypo';
@@ -26,6 +23,50 @@
          url('entypo-webfont.svg#entyporegular') format('svg');
     font-weight: normal;
     font-style: normal;
+}
+
+@font-face {
+	font-family: 'Source Sans Pro';
+	src: url('sourcesanspro-italic-webfont.eot');
+	src: url('sourcesanspro-italic-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('sourcesanspro-italic-webfont.woff') format('woff'),
+		 url('sourcesanspro-italic-webfont.ttf') format('truetype'),
+		 url('sourcesanspro-italic-webfont.svg#source_sans_proitalic') format('svg');
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Source Sans Pro';
+	src: url('sourcesanspro-regular-webfont.eot');
+	src: url('sourcesanspro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('sourcesanspro-regular-webfont.woff') format('woff'),
+		 url('sourcesanspro-regular-webfont.ttf') format('truetype'),
+		 url('sourcesanspro-regular-webfont.svg#source_sans_proregular') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Source Sans Pro';
+	src: url('sourcesanspro-semibold-webfont.eot');
+	src: url('sourcesanspro-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('sourcesanspro-semibold-webfont.woff') format('woff'),
+		 url('sourcesanspro-semibold-webfont.ttf') format('truetype'),
+		 url('sourcesanspro-semibold-webfont.svg#source_sans_prosemibold') format('svg');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'varela round';
+	src: url('varelaround-regular-webfont.eot');
+	src: url('varelaround-regular-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('varelaround-regular-webfont.woff') format('woff'),
+		 url('varelaround-regular-webfont.ttf') format('truetype'),
+		 url('varelaround-regular-webfont.svg#varela_roundregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
 /**
