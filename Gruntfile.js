@@ -298,6 +298,37 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.registerTask('staticise', function () {
+        //grunt.task.requires('fetchpages:dist');
+
+        var data = grunt.file.readJSON(grunt.config('yeoman.dist') + '/content/posts.json'),
+            content = 'This is some test content',
+            index = grunt.file.read(grunt.config('yeoman.dist') + '/index.html'),
+            output,
+            sections = [],
+            menuItems = [];
+
+        function nano(template, data) {
+            return template.replace(/\{([\w\.]*)\}/g, function(str, key) {
+                var keys = key.split("."), v = data[keys.shift()];
+                for (var i = 0, l = keys.length; i < l; i++) v = v[keys[i]];
+                return (typeof v !== "undefined" && v !== null) ? v : "";
+            });
+        }
+
+        for(var i = 0, c = data.posts.length; i < c; i++) {
+            var post = data.posts[i];
+            sections.push(nano('<section><h2 id="{slug}">{title}</h2>{content}</section>', post));
+            menuItems.push(nano('<li><a href="#{slug}">{title}</a></li>', post));
+        }
+
+        output = index.replace(/<ul id="sideNavUl"><\/ul>/, '<ul id="sideNavUl">' + "\n\t\t\t\t\t\t" + menuItems.join("\n\t\t\t\t\t\t") + "\n\t\t\t\t\t" + '</ul>');
+        output = output.replace(/<div id="container"><\/div>/, '<div id="container">' + "\n\t\t\t\t" + sections.join("\n\t\t\t\t") + "\n\t\t\t" + '</div>');
+
+        grunt.file.write(grunt.config('yeoman.dist') + '/index.html', output);
+        //grunt.log.writeln(output);
+    });
+
     grunt.registerTask('server', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
@@ -332,7 +363,8 @@ module.exports = function (grunt) {
         'copy:dist',
         'rev',
         'usemin',
-        'fetchpages:dist'
+        'fetchpages:dist',
+        'staticise'
     ]);
 
     /*grunt.registerTask('default', [
