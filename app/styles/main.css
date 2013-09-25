@@ -134,10 +134,19 @@ figure {
 	border: 1px solid;
 }
 
+blockquote {
+	font-size: 0.85em;
+	padding: 0 1.33em;
+}
+
 blockquote p {
 	font-size: 1.25em;
 	font-style: italic;
 	margin-top: 1.33em;
+}
+
+blockquote p:first-of-type {
+	margin-top: 0;
 }
 
 caption {
