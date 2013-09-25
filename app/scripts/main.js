@@ -124,7 +124,7 @@ function display_posts(posts) {
 			$("#sticky").html(post.content);
 		} else {
 			$("#container").append(nano('<section class="{classes}"><h2 id="{slug}">{title}</h2>{content}</section>', post));
-			$("#sideNav ul").append(nano('<li><a href="#{slug}">{title}</a></li>', post));
+			$("#sideNav ul").append(nano('<li class="{classes}"><a href="#{slug}">{title}</a></li>', post));
 
 			// special case for the glossary
 			if ( _.findWhere(post.tags, { slug: "glossary" }) ) {

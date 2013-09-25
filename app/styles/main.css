@@ -239,7 +239,7 @@ dd {
 [role="navigation"] ul {
 	background: #00AFB6;
 	margin-top: 0;
-	padding-top: 0.75em;
+	padding-top: 0;
 }
 
 [role="navigation"] li, .tabs-nav li {
@@ -251,18 +251,23 @@ dd {
 
 [role="navigation"] a, [role="navigation"] a:hover, [role="navigation"] a:active, [role="navigation"] a:visited, .tabs-nav a {
 	outline: none;
-	padding: 0.75em 0.75em 0.75em 0;
+	padding: 0.75em;
 	display: block;
 	text-align: left;
 	font-size: 20px;
 	font-size: 1rem;
 	color: #fff;
 	font-family: 'varela round', sans-serif;
-	margin: 0 0.75em;
+	margin: 0;
 }
 
-[role="navigation"] a:hover, [role="navigation"] a:active, [role="navigation"] a:focus, [role="navigation"] a[aria-selected] {
+[role="navigation"] a:hover {
 	color: #f2e85b;
+}
+
+[role="navigation"] a:active, [role="navigation"] a:focus, [role="navigation"] a[aria-selected] {
+	color: #00AFB6;
+	background: #fff;
 }
 
 a[aria-selected]:after {
@@ -890,6 +895,11 @@ body {
 	margin-left: 2em;
 }
 
+#content .auxiliary {
+	background: #edeeef;
+	padding: 1.5em;
+}
+
 #menu {
 	float: left;
 	width: 265px;
@@ -997,6 +1007,10 @@ summary[role="button"], summary[role="button"]:hover {
 	box-shadow: 5px 5px #222;
 }
 
+#sideNav .auxiliary {
+	background: #72d1dd;
+}
+
 p img {
 	display: none;
 }
@@ -1010,8 +1024,8 @@ header img {
 footer {
 	border-top: 1px solid #dbdddf;
 	min-height: 60px;
-	padding-top: 1.5em;
-	margin-top: 3em;
+	padding: 1.5em 0;
+	margin-top: 2em;
 	opacity: 0.5;
 	text-align: center;
 }
