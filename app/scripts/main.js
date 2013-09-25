@@ -261,6 +261,9 @@ $("body").on("click", "#menu", function (evt) {
 		save_position();
 		$("#content").animate({ scrollTop: 0 }, options.scrollDuration, function () {
 			$("#sideNav").focus();
+			setTimeout(function () {
+				set_hash("");
+			}, 0);
 		});
 	}
 });

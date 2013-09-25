@@ -808,10 +808,7 @@ body {
 
 [role="main"] h1 {
 	padding-bottom: 1.33rem;
-	/*border-bottom: 3px solid;*/
-	background: url(../images/mhf_logo.png) top left no-repeat;
-	background-size: 2em auto;
-	padding-left: 2.4em;
+	border-bottom: 3px solid;
 }
 
 .snap-drawer {
@@ -924,17 +921,6 @@ body {
 
 }
 
-@media all and (max-width: 1100px) {
-
-	[role="main"] h1 {
-		background: url(../images/mhf_logo_full.png) top left no-repeat;
-		background-size: 5em auto;
-		padding-left: 0;
-		padding-top: 2.8em;
-	}
-
-}
-
 #definitions dl {
 	transition: all 0.3s ease;
 	position: relative;
@@ -1013,6 +999,12 @@ summary[role="button"], summary[role="button"]:hover {
 
 p img {
 	display: none;
+}
+
+header img {
+	max-height: 80px;
+	width: auto;
+	margin: 0 1.5em 1.2em 0;
 }
 
 footer {
