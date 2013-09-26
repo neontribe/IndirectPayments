@@ -126,6 +126,11 @@ function display_posts(posts) {
 			$("#container").append(nano('<section class="{classes}"><h2 id="{slug}">{title}</h2>{content}</section>', post));
 			$("#sideNav ul").append(nano('<li class="{classes}"><a href="#{slug}">{title}</a></li>', post));
 
+			// print button for checklist
+			if ( _.findWhere(post.tags, { slug: "checklist" }) ) {
+				$("#" + post.slug).append('<button>Print</button>');
+			}
+
 			// special case for the glossary
 			if ( _.findWhere(post.tags, { slug: "glossary" }) ) {
 				glossary(post.slug);
@@ -199,6 +204,30 @@ function init_content() {
 			}
 		});
 	}
+}
+
+function closePrint() {
+	document.body.removeChild(this.__container__);
+}
+
+function printPage(contentObj) {
+	var oHiddFrame = document.createElement("iframe");
+	oHiddFrame.onload = function(){
+		var $content = contentObj;
+		return function setPrint() {
+			this.contentWindow.__container__ = this;
+			this.contentWindow.onbeforeunload = closePrint;
+			this.contentWindow.onafterprint = closePrint;
+			$("#content", this.contentWindow.document).html($content.html());
+			this.contentWindow.print();
+		}
+	}();
+	oHiddFrame.style.visibility = "hidden";
+	oHiddFrame.style.position = "fixed";
+	oHiddFrame.style.right = "0";
+	oHiddFrame.style.bottom = "0";
+	oHiddFrame.src = "print.html";
+	document.body.appendChild(oHiddFrame);
 }
 
 //
@@ -312,6 +341,13 @@ $("#container").on("click", ".term", function (evt) {
 			}
 		}
 	});
+});
+
+// print button
+$("body").on("click", "section h2 button", function (evt) {
+	evt.preventDefault();
+	var $content = $(this).parents("section");
+	printPage($content);
 });
 
 // listen to browser window resizes

@@ -680,6 +680,11 @@ input[disabled]:hover, input[disabled]:focus {
 	opacity: 0.5;
 }
 
+section h2 button {
+	font-size: 0.6em;
+	float: right;
+}
+
 /**
 * Grid-like helper styles
 * For making quasi-columns / adjacent boxes. Example HTML to follow

@@ -1,0 +1,12 @@
+button {
+	display: none !important;
+	opacity: 0;
+}
+
+body {
+	font-size: 1.5em;
+}
+
+#content {
+	box-shadow: none;
+}

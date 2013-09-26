@@ -38,3 +38,9 @@ test("Case Studies", function () {
 
 	ok($detail.find("> div").is(":visible"), "Clicking summary reveals details content");
 });
+
+test("Checklist", function () {
+	var app = frames["app"].document;
+	ok($("section.checklist", app).length, "The checklist section is present");
+	ok($("section.checklist h2 button", app).length, "The checklist section has a 'Print' button");
+});
