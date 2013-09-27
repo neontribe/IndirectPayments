@@ -222,8 +222,9 @@ p, li, dt, dd {
 
 p {
 	text-align: justify;
-	-moz-hyphens: auto;
 	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
 	hyphens: auto;
 }
 
@@ -311,13 +312,13 @@ dd {
 	margin: 0;
 }
 
-[role="navigation"] a:hover {
-	color: #f2e85b;
+[role="navigation"] a:hover, [role="navigation"] a:focus, [role="navigation"] a:active {
+	background: #008489;
 }
 
-[role="navigation"] a:active, [role="navigation"] a:focus, [role="navigation"] a[aria-selected] {
-	color: #00AFB6;
+[role="navigation"] a[aria-selected] {
 	background: #fff;
+	color: #4B565E;
 }
 
 a[aria-selected]:after {
@@ -332,16 +333,6 @@ a[aria-selected]:after {
 
 [role="navigation"] li + li a, [role="navigation"] li + li a:hover, [role="navigation"] li + li a:focus {
 	border-top: 2px solid #fff;
-}
-
-[role="navigation"] h2 {
-	padding: 0.33em 0;
-	text-align: center;
-	text-transform: uppercase;
-	color: #fff;
-	font-weight: bold;
-	background: #008489;
-	position: relative;
 }
 
 #auxNav {
@@ -406,8 +397,8 @@ header > div {
 }
 
 header + * {
-	margin-top: 60px;
-	margin-top: 3rem;
+	margin-top: 30px;
+	margin-top: 1.5rem;
 }
 
 header * {
@@ -512,6 +503,18 @@ figure {
 	padding-left: 2.75em;
 	background: url(../images/icon_bulb.png) no-repeat 0.75em 0.75em;
 	background-size: 1.5em auto;
+}
+
+figure.doc {
+	background: url(../images/icon_doc.png) no-repeat 0.75em 0.75em;
+}
+
+.lt-ie9 figure {
+	background-image: url(../images/icon_bulb_ie.png);
+}
+
+.lt-ie9 figure.doc {
+	background-image: url(../images/icon_doc_ie.png);
 }
 
 figure img {
@@ -911,27 +914,43 @@ body {
 #controls button, #menu {
 	background: transparent;
 	padding: 0;
-	padding-right: 1.5rem;
 }
 
 #controls button:hover, #menu:hover, #controls button:focus, #menu:focus {
 	color: #00AFB6;
 }
 
-#menu:before {
-	content: '\2630\0020';
+#menu img, #back img, #home img {
+    display: inline-block;
+    height: 60px;
+    padding: 0.6em;
+    width: auto;
+}
+
+#home {
+	margin: 0 265px 0 0;
+}
+
+#menu img {
+	padding: 0.66em 0.25em 0.66em;
+}
+
+#print img {
+	height: 1em; 
+	width: auto;
+}
+
+#menu:hover img, #menu:focus img, #home:hover img, #home:focus img, #back:hover img, #back:focus img {
+	background: #00AFB6;
+} 
+
+#menu img, #menu span, #print img, #print span {
+	vertical-align: middle;
+	margin-top: 0;
 }
 
 #controls button[disabled] {
 	visibility: hidden;
-}
-
-#back {
-	margin-right: 265px;
-}
-
-#back:before {
-	content: '\21b0\0020';
 }
 
 #content {
@@ -967,7 +986,7 @@ body {
 	width: 265px;
 	text-align: center;
 	margin-top: 0;
-	padding-left: 1.5rem;
+	font-size: 1.5em;
 }
 
 @media all and (max-width: 800px) {
@@ -1032,6 +1051,10 @@ summary {
 	cursor: pointer;
 }
 
+.lt-ie9 {
+	background-image: #00AFB6 url(../images/icon_eye_white_ie.png) no-repeat 0.5em center;
+}
+
 summary:focus {
 	background: #008489 url(../images/icon_eye_white.png) no-repeat 0.5em center  !important;
 	background-size: auto 1.5em !important;
@@ -1071,6 +1094,14 @@ summary[role="button"], summary[role="button"]:hover {
 
 #sideNav .auxiliary {
 	background: #72d1dd;
+}
+
+#sideNav .auxiliary a {
+	color: #4b565e; 
+}
+
+#sideNav .auxiliary a:hover, #sideNav .auxiliary a:focus {
+	color: #fff;
 }
 
 p img {

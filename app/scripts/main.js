@@ -128,7 +128,7 @@ function display_posts(posts) {
 
 			// print button for checklist, if supported
 			if ( _.findWhere(post.tags, { slug: "checklist" }) && $.isFunction(window.print) ) {
-				$("#" + post.slug).append('<button>Print</button>');
+				$("#" + post.slug).append('<button id="print"><img src="images/print_white.png" alt="" /> <span>Print</span></button>');
 			}
 
 			// special case for the glossary
