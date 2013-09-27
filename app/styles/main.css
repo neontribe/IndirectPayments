@@ -15,14 +15,14 @@
 */
 
 @font-face {
-    font-family: 'entypo';
-    src: url('entypo-webfont.eot');
-    src: url('entypo-webfont.eot?#iefix') format('embedded-opentype'),
-         url('entypo-webfont.woff') format('woff'),
-         url('entypo-webfont.ttf') format('truetype'),
-         url('entypo-webfont.svg#entyporegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'entypo';
+	src: url('entypo-webfont.eot');
+	src: url('entypo-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('entypo-webfont.woff') format('woff'),
+		 url('entypo-webfont.ttf') format('truetype'),
+		 url('entypo-webfont.svg#entyporegular') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
@@ -206,9 +206,9 @@ blockquote p:before, q:before { content: '\201C' }
 blockquote p:after, q:after { content: '\201D' }
 
 hr {
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    height: 0;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	height: 0;
 }
 
 /**
@@ -237,10 +237,10 @@ p:only-child, p:only-of-type, header p {
 p * { margin-top: 0 }
 
 [role="main"] > div > p:first-child:first-letter {
-    float: left;
-    font-size: 3.66em;
-    line-height: 1;
-    vertical-align: super;
+	float: left;
+	font-size: 3.66em;
+	line-height: 1;
+	vertical-align: super;
 }
 
 /* for introductory paragraphs belonging to major sections */
@@ -367,7 +367,7 @@ a[aria-selected]:after {
 */
 
 h1, h2, h3, h4 {
-    font-weight: 700;
+	font-weight: 700;
 	line-height: 1;
 	font-family: 'varela round', sans-serif;
 }
@@ -431,10 +431,10 @@ del { text-decoration: line-through }
 abbr[title], dfn[title], .term { cursor: help }
 
 abbr, .term {
-    border-bottom: 2px dotted #00AFB6;
-    display: inline-block;
-    /*margin-right: 0.75em;*/
-    position: relative;
+	border-bottom: 2px dotted #00AFB6;
+	display: inline-block;
+	/*margin-right: 0.75em;*/
+	position: relative;
 }
 
 abbr:focus, abbr:hover, .term:focus, .term:hover {
@@ -443,15 +443,15 @@ abbr:focus, abbr:hover, .term:focus, .term:hover {
 }
 
 /*.term:after, abbr:after {
-    color: #00AFB6;
-    content: '\e704';
-    font-family: entypo;
-    font-size: 1.25em;
-    font-weight: normal;
-    line-height: 0;
-    position: absolute;
-    right: -0.6em;
-    vertical-align: super;
+	color: #00AFB6;
+	content: '\e704';
+	font-family: entypo;
+	font-size: 1.25em;
+	font-weight: normal;
+	line-height: 0;
+	position: absolute;
+	right: -0.6em;
+	vertical-align: super;
 }*/
 
 small {
@@ -601,8 +601,8 @@ input, textarea, select {
 
 button::-moz-focus-inner,
 input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
+	border: 0;
+	padding: 0;
 }
 
 form p + p {
@@ -767,13 +767,13 @@ div.group-bottom > * { vertical-align: baseline }
 */
 
 .a11y-hide {
-    display: inline-block !important;
-    height: 0 !important;
-    margin: 0 !important;
-    overflow: hidden;
-    padding: 0 !important;
-    position: absolute !important;
-    width: 0 !important;
+	display: inline-block !important;
+	height: 0 !important;
+	margin: 0 !important;
+	overflow: hidden;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 0 !important;
 }
 
 .a11y-hide + * {
