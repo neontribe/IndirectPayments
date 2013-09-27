@@ -392,6 +392,13 @@ h2:first-letter {
 	text-transform: uppercase;
 }
 
+h1 sup {
+	font-size: 0.5em;
+	color: #900;
+	text-transform: uppercase;
+	padding-left: 0.4em;
+}
+
 header > div {
 	border-bottom: 2px solid;
 	padding-bottom: 26px;
