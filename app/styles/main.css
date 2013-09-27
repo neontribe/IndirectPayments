@@ -270,6 +270,10 @@ dt {
 	text-transform: capitalize;
 }
 
+dt img {
+	height: 0.75em;
+}
+
 dd + dt {
 	margin-top: 0.75em;
 }
@@ -888,15 +892,6 @@ body {
 
 .snap-drawer-right {
 	background: #4b565e;
-}
-
-.snap-drawer-right dt:before {
-	font-family: entypo;
-	font-size: 1.5em;
-	line-height: 1;
-	content: '\E704';
-	padding: 0 0.25em 0 0;
-	font-weight: normal;
 }
 
 #controls {
