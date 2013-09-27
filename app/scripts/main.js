@@ -1,5 +1,9 @@
 var webHostName = "indirectpayments.neontribe.co.uk",
 	apiBase = "http://" + webHostName + "/api/",
+	scripts = document.getElementsByTagName('script'),
+	lastScript = scripts[scripts.length-1],
+	scriptName = lastScript.src.replace(/^.*\/(.+\.js)$/, "$1"),
+	dev = scriptName === "main.js",
 	options = {
 		apiEndpoints: {
 			posts: apiBase + "get_posts/?count=100"
@@ -9,7 +13,7 @@ var webHostName = "indirectpayments.neontribe.co.uk",
 		scrollTopPadding: 20,
 		drawersThreshold: 800,
 		scrollDuration: 1000,
-		debug: true
+		debug: dev
 	},
 	lastPosition = [],
 	cache = {
