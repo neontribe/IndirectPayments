@@ -936,13 +936,13 @@ body {
 }
 
 #print img {
-	height: 1em; 
+	height: 1em;
 	width: auto;
 }
 
 #menu:hover img, #menu:focus img, #home:hover img, #home:focus img, #back:hover img, #back:focus img {
 	background: #00AFB6;
-} 
+}
 
 #menu img, #menu span, #print img, #print span {
 	vertical-align: middle;
@@ -1097,7 +1097,7 @@ summary[role="button"], summary[role="button"]:hover {
 }
 
 #sideNav .auxiliary a {
-	color: #4b565e; 
+	color: #4b565e;
 }
 
 #sideNav .auxiliary a:hover, #sideNav .auxiliary a:focus {
