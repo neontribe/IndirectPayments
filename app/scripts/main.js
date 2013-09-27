@@ -301,6 +301,18 @@ $("body").on("click", "#menu", function (evt) {
 	}
 });
 
+// home button
+$("body").on("click", "#home", function (evt) {
+	evt.preventDefault();
+	save_position();
+	$("#content").animate({ scrollTop: 0 }, options.scrollDuration, function () {
+		$("#sideNav").focus();
+		setTimeout(function () {
+			set_hash("");
+		}, 0);
+	});
+});
+
 // glossary terms
 $("#container").on("click", ".term", function (evt) {
 	$("#definitions dt, #definitions dd").removeClass("slideIn");
