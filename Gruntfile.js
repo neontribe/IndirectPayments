@@ -21,7 +21,7 @@ module.exports = function (grunt) {
     // configurable paths
     var yeomanConfig = {
         app: 'app',
-        dist: 'dist',
+        dist: 'www',
         apiPosts: 'http://indirectpayments.neontribe.co.uk/api/get_posts/'
     };
 
