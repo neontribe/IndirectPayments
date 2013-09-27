@@ -126,8 +126,8 @@ function display_posts(posts) {
 			$("#container").append(nano('<section class="{classes}"><h2 id="{slug}">{title}</h2>{content}</section>', post));
 			$("#sideNav ul").append(nano('<li class="{classes}"><a href="#{slug}">{title}</a></li>', post));
 
-			// print button for checklist
-			if ( _.findWhere(post.tags, { slug: "checklist" }) ) {
+			// print button for checklist, if supported
+			if ( _.findWhere(post.tags, { slug: "checklist" }) && $.isFunction(window.print) ) {
 				$("#" + post.slug).append('<button>Print</button>');
 			}
 
