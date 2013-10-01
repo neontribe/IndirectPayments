@@ -320,7 +320,8 @@ dd {
 	background: #008489;
 }
 
-[role="navigation"] a[aria-selected] {
+[role="navigation"] a[aria-selected],
+li.auxilary a[aria-selected]:hover, li.auxilary a[aria-selected]:focus {
 	background: #fff;
 	color: #4B565E;
 }
@@ -1046,8 +1047,8 @@ summary {
 	cursor: pointer;
 }
 
-.lt-ie9 {
-	background-image: #00AFB6 url(../images/icon_eye_white_ie.png) no-repeat 0.5em center;
+.lt-ie9 summary {
+	background-image: url(../images/icon_eye_white_ie.png);
 }
 
 summary:focus {
@@ -1092,11 +1093,15 @@ summary[role="button"], summary[role="button"]:hover {
 }
 
 #sideNav .auxiliary a {
-	color: #4b565e; 
+	color: #4b565e;
 }
 
 #sideNav .auxiliary a:hover, #sideNav .auxiliary a:focus {
 	color: #fff;
+}
+
+#sideNav .auxiliary a[aria-selected]:hover, #sideNav .auxiliary a[aria-selected]:focus {
+	color: #4b565e;
 }
 
 p img {
