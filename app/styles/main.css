@@ -226,6 +226,7 @@ p {
 	-moz-hyphens: auto;
 	-ms-hyphens: auto;
 	hyphens: auto;
+	font-style: normal;
 }
 
 p:only-child, p:only-of-type, header p {
@@ -268,6 +269,25 @@ dt {
 	padding-bottom: 0;
 	padding-right: 1.6em;
 	text-transform: capitalize;
+}
+
+
+dt {
+	font-weight: bold;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	padding-right: 1.6em;
+	padding-left: 1.5em;
+	text-transform: capitalize;
+    background-image: url("../images/icon_bulb_ie.png");
+    background-position: 0.66em 75%;
+    background-repeat: no-repeat;
+    background-size: auto 1em;
+}
+
+.lt-ie9 dt {
+	background-image: none;
+	padding-left: 0;
 }
 
 dt img {
@@ -1012,7 +1032,6 @@ body {
 #definitions dl {
 	transition: all 0.3s ease;
 	position: relative;
-	width: 265px;
 	-webkit-transform: translate3d(-265px, 0, 0);
 	-moz-transform: translate3d(-265px, 0, 0);
 	-ms-transform: translate3d(-265px, 0, 0);
@@ -1047,6 +1066,10 @@ summary {
 summary:focus {
 	background: #008489 url(../images/icon_eye_white.png) no-repeat 0.5em center  !important;
 	background-size: auto 1.5em !important;
+}
+
+.lt-ie9 summary:focus {
+	background-image: url(../images/icon_eye_white_ie.png) !important;
 }
 
 summary + div {

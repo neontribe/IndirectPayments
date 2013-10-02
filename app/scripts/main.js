@@ -322,7 +322,7 @@ $("#container").on("click", ".term", function (evt) {
 			title: $term.text(),
 			definition: $def.text()
 		},
-		card = nano("<dl><dt><img src='images/icon_bulb.png' alt='' /> {title}</dt><dd>{definition}</dd></dl>", cardData);
+		card = nano("<dl><dt>{title}</dt><dd>{definition}</dd></dl>", cardData);
 
 	// accessibility
 	$def.attr({ "aria-hidden": false, "role": "alertdialog" }).removeClass("a11y-none");
