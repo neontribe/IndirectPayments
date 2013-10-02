@@ -21,9 +21,9 @@ test("Glossary", function () {
 	ok($("#definitions dt", app).length === 1, "After clicking term, definitions list contains card");
 
 	$("html", app).removeClass("csstransitions");
-	$("#definitions dt .close", app).trigger("click");
+	$("#definitions dt", app).trigger("click");
 
-	ok($("#definitions dt", app).length === 0, "Clicking close icon removes card from definitions list");
+	ok($("#definitions dt", app).length === 0, "Clicking definition title removes card from definitions list");
 });
 
 test("Case Studies", function () {
@@ -41,6 +41,8 @@ test("Case Studies", function () {
 
 test("Checklist", function () {
 	var app = frames["app"].document;
-	ok($("section.checklist", app).length, "The checklist section is present");
-	ok($("section.checklist h2 button", app).length, "The checklist section has a 'Print' button");
+	ok($("section .checklist button", app).length, "There are checklist buttons present");
+	ok($("section .checklist button", app).parent().next("div").is(":not(:visible)"), "The checklist content is initially hidden");
+	$("section .checklist button", app).eq(0).trigger("click");
+	ok($("section .checklist button", app).eq(0).parent().next("div").is(":visible"), "Content shown when button clicked");
 });

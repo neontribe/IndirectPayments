@@ -130,11 +130,6 @@ function display_posts(posts) {
 			$("#container").append(nano('<section class="{classes}"><h2 id="{slug}">{title}</h2>{content}</section>', post));
 			$("#sideNav ul").append(nano('<li class="{classes}"><a href="#{slug}">{title}</a></li>', post));
 
-			// print button for checklist, if supported
-			if ( _.findWhere(post.tags, { slug: "checklist" }) && $.isFunction(window.print) ) {
-				$("#" + post.slug).append('<button id="print"><img src="images/print_white.png" alt="" /> <span>Print</span></button>');
-			}
-
 			// special case for the glossary
 			if ( _.findWhere(post.tags, { slug: "glossary" }) ) {
 				glossary(post.slug);
@@ -146,8 +141,6 @@ function display_posts(posts) {
 			}
 		}
 	});
-
-	cache.articles = $("#container h2");
 }
 
 function set_hash(target) {
@@ -364,6 +357,17 @@ $("body").on("click", "section h2 button", function (evt) {
 	evt.preventDefault();
 	var $content = $(this).parents("section");
 	printPage($content);
+});
+
+// checklist button
+$("body").on("click", ".checklist button", function (evt) {
+	evt.preventDefault();
+	var $content = $(this).parent().next("div");
+	if ( $content.is(":visible") ) {
+		$content.hide().attr("role", null);
+	} else {
+		$content.show().attr("role", "alertdialog");
+	}
 });
 
 // listen to browser window resizes
