@@ -1000,9 +1000,10 @@ body {
 		overflow: visible;
 		height: auto;
 		width: auto;
+		margin: 0;
 	}
 
-	#back {
+	#home {
 		margin-right: 0;
 	}
 
