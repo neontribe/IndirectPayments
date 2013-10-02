@@ -1021,14 +1021,6 @@ body {
 	cursor: pointer;
 }
 
-#definitions .close {
-	position: absolute;
-	top: 0.6em;
-	right: 1.5em;
-	font-size: 1em;
-	line-height: 1;
-}
-
 #definitions dl.slideIn {
 	-webkit-transform: translate3d(0, 0, 0);
 	-moz-transform: translate3d(0, 0, 0);
