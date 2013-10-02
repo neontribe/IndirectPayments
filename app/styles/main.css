@@ -1148,6 +1148,13 @@ footer a, footer a:hover {
 	font-weight: 600;
 }
 
+.checklist button {
+	margin: 0;
+}
+
 .checklist > div {
 	display: none;
+	border: 1px solid;
+	margin-top: 0;
+	padding: 0.75em;
 }
