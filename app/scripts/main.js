@@ -146,8 +146,6 @@ function display_posts(posts) {
 			}
 		}
 	});
-
-	cache.articles = $("#container h2");
 }
 
 function set_hash(target) {
@@ -364,6 +362,17 @@ $("body").on("click", "section h2 button", function (evt) {
 	evt.preventDefault();
 	var $content = $(this).parents("section");
 	printPage($content);
+});
+
+// checklist button
+$("body").on("click", ".checklist button", function (evt) {
+	evt.preventDefault();
+	var $content = $(this).parent().next("div");
+	if ( $content.is(":visible") ) {
+		$content.hide().attr("role", null);
+	} else {
+		$content.show().attr("role", "alertdialog");
+	}
 });
 
 // listen to browser window resizes
