@@ -508,6 +508,7 @@ figure {
 	padding-left: 2.75em;
 	background: url(../images/icon_bulb.png) no-repeat 0.75em 0.75em;
 	background-size: 1.5em auto;
+	min-height: 4em;
 }
 
 figure.doc {
