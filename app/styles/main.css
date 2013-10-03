@@ -498,7 +498,7 @@ img {
 	border: 0;
 }
 
-figure {
+figure, .checklist button {
 	padding: 0.75em;
 	text-align: left;
 	position: relative;
@@ -506,6 +506,26 @@ figure {
 	background: url(../images/icon_bulb.png) no-repeat 0.75em 0.75em;
 	background-size: 1.5em auto;
 	min-height: 4em;
+	display: block;
+}
+
+.checklist button, .checklist button:hover, .checklist button:focus {
+	font-size: 1em;
+	background-color: #00AFB6;
+	background-image: url(../images/checklist.png);
+	background-repeat: no-repeat;
+	background-position: 0.75em 0.5em;
+	background-size: 1.5em auto;
+	width: 100%;
+	min-height: 0;
+}
+
+.checklist div {
+	line-height: 1.5;
+}
+
+.checklist button:hover, .checklist button:active {
+	background-color: #008489;
 }
 
 figure.doc {
