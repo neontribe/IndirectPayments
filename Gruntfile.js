@@ -301,6 +301,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('staticise', function () {
         //grunt.task.requires('fetchpages:dist');
+        grunt.log.write('Staticising... ');
 
         var data = grunt.file.readJSON(grunt.config('yeoman.dist') + '/content/posts.json'),
             content = 'This is some test content',
@@ -328,6 +329,7 @@ module.exports = function (grunt) {
 
         grunt.file.write(grunt.config('yeoman.dist') + '/index.html', output);
         //grunt.log.writeln(output);
+        grunt.log.writeln('Done.');
     });
 
     grunt.registerTask('server', function (target) {
@@ -360,7 +362,7 @@ module.exports = function (grunt) {
         'concat',
         'cssmin',
         'uglify',
-        'modernizr',
+        /*'modernizr',*/
         'copy:dist',
         'rev',
         'usemin',

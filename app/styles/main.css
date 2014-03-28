@@ -431,7 +431,7 @@ section + section {
 
 p * { line-height: 1; }
 
-strong, abbr, b { font-weight:600 }
+strong, abbr, b { font-weight: 600; }
 em, cite, q { font-style: italic }
 del { text-decoration: line-through }
 abbr[title], dfn[title], .term { cursor: help }
@@ -440,6 +440,7 @@ abbr, .term {
 	border-bottom: 2px dotted #00AFB6;
 	/*margin-right: 0.75em;*/
 	position: relative;
+	display: inline-block;
 }
 
 abbr:focus, abbr:hover, .term:focus, .term:hover {
