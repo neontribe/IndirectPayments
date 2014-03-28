@@ -41,11 +41,11 @@ $.extend($.expr[":"], {
 
 // IE safe console log, toggleable through options.debug
 window.log = function () {
-	log.history = log.history || [];
+	/*log.history = log.history || [];
 	log.history.push(arguments);
 	if ( console && options.debug && typeof console.log === "function" ) {
 		console.log.apply(console, arguments);
-	}
+	}*/
 };
 
 // Nano Templates (Tomasz Mazur, Jacek Becela, https://github.com/trix/nano)
