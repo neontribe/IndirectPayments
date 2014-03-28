@@ -22,7 +22,7 @@ module.exports = function (grunt) {
     var yeomanConfig = {
         app: 'app',
         dist: 'www',
-        apiPosts: 'http://indirectpayments.neontribe.co.uk/api/get_posts/'
+        apiPosts: 'http://indirectpayments.org.uk/api/get_posts/'
     };
 
     grunt.initConfig({
@@ -279,7 +279,7 @@ module.exports = function (grunt) {
                         { url: '<%= yeoman.apiPosts %>', localFile: 'content/posts.json' }
                     ],
                     // base url for fetching pages via GruntJS files feature
-                    filesBaseURL: 'http://indirectpayments.neontribe.co.uk/api/',
+                    filesBaseURL: 'http://indirectpayments.org.uk/api/',
                     // local target folder for fetched pages
                     target: '<%= yeoman.app %>'
                 }
@@ -291,7 +291,7 @@ module.exports = function (grunt) {
                         { url: '<%= yeoman.apiPosts %>', localFile: 'content/posts.json' }
                     ],
                     // base url for fetching pages via GruntJS files feature
-                    filesBaseURL: 'http://indirectpayments.neontribe.co.uk/api/',
+                    filesBaseURL: 'http://indirectpayments.org.uk/api/',
                     // local target folder for fetched pages
                     target: '<%= yeoman.dist %>'
                 }

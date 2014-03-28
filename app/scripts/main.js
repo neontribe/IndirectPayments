@@ -1,4 +1,4 @@
-var webHostName = "indirectpayments.neontribe.co.uk",
+var webHostName = "indirectpayments.org.uk",
 	apiBase = "http://" + webHostName + "/api/",
 	scripts = document.getElementsByTagName('script'),
 	lastScript = scripts[scripts.length-1],
@@ -360,7 +360,6 @@ $("body").on("click", "section h2 button", function (evt) {
 });
 
 function getRandomInt(min, max) {
-  console.log('okay');
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
