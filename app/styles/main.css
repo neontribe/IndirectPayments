@@ -340,8 +340,7 @@ dd {
 	background: #008489;
 }
 
-[role="navigation"] a[aria-selected],
-li.auxilary a[aria-selected]:hover, li.auxilary a[aria-selected]:focus {
+[role="navigation"] a[aria-selected], li.auxilary a[aria-selected]:hover, li.auxilary a[aria-selected]:focus {
 	background: #fff;
 	color: #4B565E;
 }
@@ -519,6 +518,10 @@ figure, .checklist button {
 	background-size: 1.5em auto;
 	width: 100%;
 	min-height: 0;
+}
+
+.lt-ie9 .checklist button, .checklist button:hover, .checklist button:focus {
+	background-image: url(../images/checklist_ie.png);
 }
 
 .checklist div {
@@ -702,9 +705,6 @@ ul[role="toolbar"] button, ul[role="toolbar"] a {
 }
 
 button[disabled], input[disabled] {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
-  filter: alpha(opacity=60);
-  -moz-opacity: 0.6;
   opacity: 0.6;
   cursor: default;
 }
@@ -1166,3 +1166,8 @@ footer a, footer a:hover {
 	margin-top: 0;
 	padding: 0.75em;
 }
+
+.lt-ie9 [role="navigation"] a[aria-selected] {
+	background-color: #4b565e;
+}
+
