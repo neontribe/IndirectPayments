@@ -9,6 +9,10 @@
 <IfModule mod_rewrite.c>
 	RewriteEngine On
 	RewriteBase /
+
+	RewriteCond %{HTTP_HOST} !^(indirectpayments\.org\.uk|indirectpayments\.neontribe\.co\.uk)?$
+	RewriteRule (.*) http://indirectpayments\.org\.uk/$1 [R=301,L]
+
 	RewriteCond %{REQUEST_URI} !^/(wp-|api|index|app)
 	RewriteRule (.*) /dist/$1 [L,QSA]
 </IfModule>
