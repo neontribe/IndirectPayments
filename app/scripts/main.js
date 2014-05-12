@@ -395,6 +395,12 @@ $(window).resize(function () {
 // listen to scrolling
 $("#content").on("scroll", _.throttle( scroll_handler, 100 ));
 
+// handle external links manually for using-system-browser purposes
+$("#content").on("click", "a[target=_blank]", function (evt) {
+	evt.preventDefault();
+	window.open($(this).attr("href"), "_system");
+});
+
 //
 // --- Init ---
 //
