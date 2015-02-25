@@ -81,7 +81,7 @@ function glossary(slug) {
 			definition = $(term).nextUntil("h3").text(),
 			regex = new RegExp("(" + title + ")", "gi"),
 			templ = '<span class="term" role="button" tabindex="0" aria-haspopup="true">$1</span><span class="definition a11y-hide a11y-none" aria-hidden="true"> ' + definition + '</span>';
-		$("#container section:not(.glossary) p, #container section:not(.glossary) strong").replaceText(regex, templ);
+		$("#container section:not(.glossary) p, #container section:not(.glossary) strong, #container section:not(.glossary) li").replaceText(regex, templ);
 	});
 }
 
