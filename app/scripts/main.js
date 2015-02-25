@@ -92,7 +92,7 @@ function case_studies(slug) {
 		var title = $(v).text(),
 			number = i + 1,
 			text = all_html($(v).nextUntil("h3")),
-			regex = new RegExp('\\[case_study number="' + number + '"\\]', "gi");
+			regex = new RegExp('\\[case_study number=.' + number + '.\\]', "gi");
 
 		$("#container section:not(.case-studies) p").replaceText(regex, '<details><summary>' + title + '</summary><div>' + text + '</div></details>');
 	});
@@ -359,30 +359,18 @@ $("body").on("click", "section h2 button", function (evt) {
 	printPage($content);
 });
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-$(window).load(function() {
-  $('.checklist button').each(function() {
-    var id = 'controlled-'+getRandomInt(0, 1000);
-    $(this).parent().next("div").attr('id', id);
-    $(this).attr('aria-controls', id);
-  });
-});
-
 // checklist button
 $("body").on("click", ".checklist button", function (evt) {
 	evt.preventDefault();
-  var $trigger = $(this);
-  $trigger.attr('aria-expanded', 'false');
-	var $content = $(this).parent().next("div");
+	var $trigger = $(this);
+	$trigger.attr('aria-expanded', 'false');
+	var $content = $(this).parents(".checklist").find("> div:eq(0)");
 	if ( $content.is(":visible") ) {
 		$content.hide();
-    $trigger.attr('aria-expanded', 'false');
+		$trigger.attr('aria-expanded', 'false');
 	} else {
-    $content.show();
-    $trigger.attr('aria-expanded', 'true');
+		$content.show();
+		$trigger.attr('aria-expanded', 'true');
 	}
 });
 
