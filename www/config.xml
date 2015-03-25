@@ -33,7 +33,7 @@
 	<preference name="permissions"                value="none"/>
 
 	<!-- Customize your app and platform with the preference element. -->
-	<preference name="phonegap-version"           value="3.5.0" />          <!-- all: current version of PhoneGap -->
+	<preference name="phonegap-version"           value="3.7.0" />          <!-- all: current version of PhoneGap -->
 	<preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
 	<preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
 	<preference name="fullscreen"                 value="true" />           <!-- all: hides the status bar at the top of the screen -->
@@ -54,6 +54,8 @@
 		<gap:plugin name="Example" />
 		A list of available plugins are available at https://build.phonegap.com/docs/plugins
 	-->
+	<gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" version="1.2.0" />
+	<gap:plugin name="org.li8.inappbrowser" version="0.1" />
 
 	<!-- Define app icon for each platform. -->
 	<icon src="apple-touch-icon.png" width="768" height="768" />
@@ -67,14 +69,25 @@
 	<icon src="images/icon/ios/icon-72-2x.png"         gap:platform="ios"        width="144" height="144" />
 
 	<!-- Define app splash screen for each platform. -->
-	<!-- <gap:splash src="images/screen/android/screen-ldpi-portrait.png"  gap:platform="android" gap:density="ldpi" />
-	<gap:splash src="images/screen/android/screen-mdpi-portrait.png"  gap:platform="android" gap:density="mdpi" />
-	<gap:splash src="images/screen/android/screen-hdpi-portrait.png"  gap:platform="android" gap:density="hdpi" />
-	<gap:splash src="images/screen/android/screen-xhdpi-portrait.png" gap:platform="android" gap:density="xhdpi" />
-	<gap:splash src="images/screen/ios/screen-iphone-portrait.png"    gap:platform="ios"     width="320" height="480" />
-	<gap:splash src="images/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios"     width="640" height="960" />
-	<gap:splash src="images/screen/ios/screen-ipad-portrait.png"      gap:platform="ios"     width="768" height="1024" />
-	<gap:splash src="images/screen/ios/screen-ipad-landscape.png"     gap:platform="ios"     width="1024" height="768" /> -->
+	<gap:splash src="images/splash/android/splash-land-hdpi.png"  gap:platform="android" gap:density="land-hdpi" />
+	<gap:splash src="images/splash/android/splash-land-ldpi.png"  gap:platform="android" gap:density="land-ldpi" />
+	<gap:splash src="images/splash/android/splash-land-mdpi.png"  gap:platform="android" gap:density="land-mdpi" />
+	<gap:splash src="images/splash/android/splash-land-xhdpi.png" gap:platform="android" gap:density="land-xhdpi" />
+	<gap:splash src="images/splash/android/splash-port-hdpi.png"  gap:platform="android" gap:density="port-hdpi" />
+	<gap:splash src="images/splash/android/splash-port-ldpi.png"  gap:platform="android" gap:density="port-ldpi" />
+	<gap:splash src="images/splash/android/splash-port-mdpi.png"  gap:platform="android" gap:density="port-mdpi" />
+	<gap:splash src="images/splash/android/splash-port-xhdpi.png" gap:platform="android" gap:density="port-xhdpi" />
+
+	<gap:splash src="images/splash/ios/Default~iphone.png"                   gap:platform="ios" width="320"  height="480" />
+	<gap:splash src="images/splash/ios/Default@2x~iphone.png"                gap:platform="ios" width="640"  height="960" />
+	<gap:splash src="images/splash/ios/Default-Portrait~ipad.png"            gap:platform="ios" width="768"  height="1024" />
+	<gap:splash src="images/splash/ios/Default-Portrait@2x~ipad.png"         gap:platform="ios" width="1536" height="2048" />
+	<gap:splash src="images/splash/ios/Default-Landscape~ipad.png"           gap:platform="ios" width="1024" height="768" />
+	<gap:splash src="images/splash/ios/Default-Landscape@2x~ipad.png"        gap:platform="ios" width="2048" height="1536" />
+	<gap:splash src="images/splash/ios/Default-568h@2x~iphone.png"           gap:platform="ios" width="640"  height="1136" />
+	<gap:splash src="images/splash/ios/Default-667h@2x~iphone.png"           gap:platform="ios" width="750"  height="1334" />
+	<gap:splash src="images/splash/ios/Default-736h@3x~iphone.png"           gap:platform="ios" width="1242" height="2208" />
+	<gap:splash src="images/splash/ios/Default-Landscape-736h@3x~iphone.png" gap:platform="ios" width="2208" height="1242" />
 
 	<!--
 		Define access to external domains.

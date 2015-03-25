@@ -231,6 +231,11 @@ function printPage(contentObj) {
 // --- Listeners ---
 //
 
+$(document).on('click', '[target="_blank"]', function (evt) {
+	evt.preventDefault();
+	window.open($(evt.target).attr('href'), '_system');
+});
+
 // smooth anchor scrolling
 $("body").on("click", "a[href*='#']:not([href='#']):not(#menu)", function (evt) {
 	if ( location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
